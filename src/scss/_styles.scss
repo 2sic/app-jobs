@@ -1,0 +1,94 @@
+// Styles for theoutput of the categories and positions
+.po-wrapper {
+    .po-categories-list {
+        margin-bottom: $grid-gutter-width/2;
+
+        .po-category-button {
+            font-weight: 400;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background .3s ease, color .3s ease;
+            background: $gray-200;
+            color: $gray-800;
+            font-size: 14px;
+
+            &:hover,
+            &.co-active {
+                background: $gray-400;
+            }
+        }
+    }
+
+    .po-wrapper-inner {
+        transition: opacity .4s ease-in-out;
+        padding: $grid-gutter-width/2;
+
+        .po-position {
+            padding: $grid-gutter-width/2;
+            transition: background .2s ease;
+
+            &.po-odd {
+                background: #ecf0f1;
+
+                &:hover {
+                    background: #dadada;
+                }
+            }
+
+            &:hover {
+                background: #dadada;
+
+                .co-link {
+                    text-decoration: underline;
+                    color: $primary;
+                }
+            }
+
+            h3 {
+                margin: 0;
+            }
+
+            .po-categories-list {
+                margin: 0 0 7px 0;
+                
+                > span {
+                    font-size: 13px;
+                    color: $gray-500;
+
+                    &:first-of-type:after {
+                        content: "";
+                    }
+                    &:after {
+                        content: ",";
+                    }
+                    &:last-of-type:after {
+                        content: "";
+                    }
+                }
+            }    
+        }
+
+        .po-categories-container {
+            text-align: right;
+            
+            > span {
+                color: $primary;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+// Styles for the Admin UI
+.po-admin-table-wrapper {
+    margin: 0 0 $grid-gutter-width 0;
+    padding: $grid-gutter-width/2;
+    border-top: 1px solid $primary;
+    border-bottom: 1px solid $primary;
+
+    .po-admin-warning {
+        color: $black;
+        font-size: 16px;
+        font-weight: 700;
+    }
+}
