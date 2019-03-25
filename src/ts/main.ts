@@ -5,7 +5,9 @@ export class App {
         this.main(moduleid);
     }
 
-    main = (moduleid: number) => {
+    main(moduleid: number) {
+        const _this = this;
+
         // First, check if Array.find() is supportet, if not, use a polyfill.
         new PolyFills();
 
@@ -13,17 +15,17 @@ export class App {
         const appWrapper = `.app-${moduleid}`;
 
         // Define the crucial wrappers, so we can use them later on in the code.
-        var wrapperParent = $(`${appWrapper} .po-wrapper`);
-        var wrapper = $(`${appWrapper} .po-wrapper-inner`);
-        var positionItems = wrapper.find('.po-position');
-        var filter = '';
+        const wrapperParent = $(`${appWrapper} .po-wrapper`);
+        const wrapper = $(`${appWrapper} .po-wrapper-inner`);
+        const positionItems = wrapper.find('.po-position');
+        let filter = '';
 
         $(`${appWrapper} .po-category-button`).click(function () {
             // This checks if the current element has an active state.
             $('.po-category-button').each(function () {
-                $(this).removeClass('co-active');
+                $(this).removeClass('active');
             });
-            $(this).addClass('co-active');
+            $(this).addClass('active');
 
             // This code is responsible for the filtering of the jobs
             var newFilter = $(this).data('filter');
@@ -39,29 +41,29 @@ export class App {
             setTimeout(function () {
                 positionItems.each(function () {
                     var filterElems = $(this).data('filterelem');
-                    $(this).css('display', filter === 'nofilter' || filterElems.find(function (elem: any) {
+                    $(this).css('display', filter === 'nofilter' || filterElems.find(function (elem: string) {
                         return elem === filter;
                     }) ? 'inline-block' : 'none');
                 });
 
-                this.getOdds($(`${appWrapper} .po-position`), positionItems);
+                _this.getOdds($(`${appWrapper} .po-position`), positionItems);
 
                 wrapperParent.css('min-height', wrapper.height() + 'px');
-                setTimeout(function () {
+                setTimeout(() => {
                     wrapper.css('opacity', 1);
                 }, 400);
             }, 400);
         });
 
-        this.getOdds($(`${appWrapper} .po-position`), positionItems);
+        _this.getOdds($(`${appWrapper} .po-position`), positionItems);
     }
 
-    getOdds = (elements: any, positionItems: any) => {
+    getOdds(elements: JQuery<HTMLElement>, positionItems: JQuery<HTMLElement>) {
         positionItems.removeClass('po-odd');
 
-        Array.from(elements).filter(function (el: HTMLElement) {
+        Array.from(elements).filter((el: HTMLElement) => {
             return el.style.display !== 'none';
-        }).forEach(function (el, i) {
+        }).forEach((el, i) => {
             /*
                 Removed classList.toggle and solved differently because the second parameter of .toggle is not supported in IE11.
                 If your application does not have to support IE11, it is recommended that you remove the bottom code, and use the

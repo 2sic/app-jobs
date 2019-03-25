@@ -105,21 +105,23 @@
                 cats = AsDynamic(App.Data["Category"]);
             }
 
-            <div class="po-categories-list">
-                @if (Content.Categories.Count > 1 || Content.Categories.Count == 0) {
-                    <div  @Koi.Class("all='po-category-button' bs3='badge' bs4,oth='badge badge-pill'") data-filter="nofilter">
-                        @App.Resources.LabelNoFilter
-                    </div>
-                
-                    foreach (var c in cats)
-                    {
-                        <div @Koi.Class("all='po-category-button' bs3='badge' bs4,oth='badge badge-pill'") data-filter="@c.Key">
-                            @c.Name
+            @if (App.Settings.UseCategories) {
+                <div class="po-categories-list">
+                    @if (Content.Categories.Count > 1 || Content.Categories.Count == 0) {
+                        <div  @Koi.Class("all='po-category-button' bs3='btn btn-primary' bs4,oth='btn btn-outline-primary'") data-filter="nofilter">
+                            @App.Resources.LabelNoFilter
                         </div>
+                    
+                        foreach (var c in cats)
+                        {
+                            <div @Koi.Class("all='po-category-button sc-element' bs3='btn btn-primary' bs4,oth='btn btn-outline-primary'") data-filter="@c.Key">
+                                @Edit.Toolbar(c, actions: "edit")
+                                @c.Name
+                            </div>
+                        }
                     }
-                }
-            </div>
-            
+                </div>
+            }
 
             <div @Koi.Class("all='co-container-inner co-navigation co-navigation-431 co-navigation-image po-wrapper-inner' bs3='row' bs4,oth='row'")>
                 @foreach (var p in positions)
@@ -134,19 +136,8 @@
                             @:<a target="_blank" class="co-link-box" title="@p.Name" href="@p.Link">
                         }
                         
-                        <div class="row">
-                            @*
-                            @if(!String.IsNullOrEmpty(p.Image))
-                            {
-                                <div class="co-img-wrapper col-4">
-                                    <img src="@p.Image?w=690&amp;h=345&amp;quality=80&amp;mode=crop&amp;scale=both" alt="@p.Name" />
-                                </div>
-                            }else { 
-                                <div class="co-img-placeholder" style="background-color: transparent;"></div>
-                            }
-                            *@
-                            
-                            <div class="col-9">
+                        <div class="row">                            
+                            <div  @Koi.Class("bs3='col-xs-9' bs4,oth='col-9'")>
                                 <h3>@p.Name</h3>
                                 <div class="po-categories-list">
                                     <span>@p.Date.ToString("dd.MM.yyyy")</span>
@@ -159,7 +150,7 @@
                                 
                                 <span class="co-link"> @App.Resources.LabelShowMore&nbsp;<span class="" aria-hidden="true">&rsaquo;</span>
                             </div>
-                            <div class="col-3 po-categories-container">
+                            <div @Koi.Class("all='po-categories-container' bs3='col-xs-3' bs4,oth='col-3'")>
                                 @foreach (var c in p.Categories) {
                                     <span>@c.Name</span>
                                 }
