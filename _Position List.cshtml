@@ -1,180 +1,184 @@
 @using Connect.Koi
+<div class="co-container-outer app-@Dnn.Module.ModuleID">
+    <div class="co-container-inner co-accordion-wrapper">
+        @{
+            var cats = Content.Categories;
 
-@{
-    var cats = Content.Categories;
+            var positions = AsDynamic(App.Data["Position"])
+                                .Where(p => ((IEnumerable<dynamic>)p.Categories)
+                                .Any(qc => ((IEnumerable<dynamic>)cats)
+                                .Any(c => c.Key == qc.Key)));
 
-    var positions = AsDynamic(App.Data["Position"])
-                        .Where(p => ((IEnumerable<dynamic>)p.Categories)
-                        .Any(qc => ((IEnumerable<dynamic>)cats)
-                        .Any(c => c.Key == qc.Key)));
-
-    if (Content.SortOrder == "DESC-date-DESC")
-    {
-        positions = positions.OrderByDescending(q => q.Priority).ThenByDescending(q => q.Date);
-    }
-    else if (Content.SortOrder == "DESC-id-ASC")
-    {
-        positions = positions.OrderByDescending(q => q.Priority).ThenBy(q => q.EntityId);
-    }
-    else if (Content.SortOrder == "DESC-id-DESC")
-    {
-        positions = positions.OrderByDescending(q => q.Priority).ThenByDescending(q => q.EntityId);
-    }
-    else if (Content.SortOrder == "DESC-title-ASC")
-    {
-        positions = positions.OrderByDescending(q => q.Priority).ThenBy(q => q.Title);
-    }
-}
-
-@if(Permissions.UserMayEditContent)
-{
-    <div class="po-admin-table-wrapper">
-        <table class="po-admin-table">
-            <tr>
-                <td>
-                    <span class="po-admin-warning">Nur als Administrator sichtbar</span>
-                </td>
-                <td>
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span>Konfiguration verwalten:</span>
-                </td>
-                <td>
-                    @Edit.Toolbar(Content)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span>Kategorien verwalten:</span>
-                </td>
-                <td>
-                    @Edit.Toolbar(toolbar: new object[] { 
-                        new { 
-                            showCondition = true,
-                            command = new { 
-                                action = "contentitems", 
-                                contentType= "Category" 
-                            }
-                        }
-                    }, settings: new { hover="none", show = "always" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span>Stellen verwalten:</span>
-                </td>
-                <td>
-                    @Edit.Toolbar(toolbar: new object[] { 
-                        new { 
-                            showCondition = true,
-                            command = new { 
-                                action = "contentitems", 
-                                contentType= "Position" 
-                            }
-                        }
-                    }, settings: new { hover="none", show = "always" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span>Stelle erstellen:</span>
-                </td>
-                <td>
-                    @Edit.Toolbar(toolbar: new object[] { 
-                        new { 
-                            showCondition = true,
-                            command = new { 
-                                action = "new", 
-                                contentType= "Position" 
-                            }
-                        }
-                    }, settings: new { hover="none", show = "always" })
-                </td>
-            </tr>
-        </table>            
-    </div>
-}
-
-<div class="po-wrapper sc-element">
-    @if(cats.Count == 0)
-    { 
-        cats = AsDynamic(App.Data["Category"]);
-    }
-
-    <div class="po-categories-list">
-        @if (Content.Categories.Count > 1 || Content.Categories.Count == 0) {
-            <div  @Koi.Class("all='po-category-button' bs3='badge' bs4,oth='badge badge-pill'") data-filter="nofilter">
-                @App.Resources.LabelNoFilter
-            </div>
-        
-            foreach (var c in cats)
+            if (Content.SortOrder == "DESC-date-DESC")
             {
-                <div @Koi.Class("all='po-category-button' bs3='badge' bs4,oth='badge badge-pill'") data-filter="@c.Key">
-                    @c.Name
-                </div>
+                positions = positions.OrderByDescending(q => q.Priority).ThenByDescending(q => q.Date);
+            }
+            else if (Content.SortOrder == "DESC-id-ASC")
+            {
+                positions = positions.OrderByDescending(q => q.Priority).ThenBy(q => q.EntityId);
+            }
+            else if (Content.SortOrder == "DESC-id-DESC")
+            {
+                positions = positions.OrderByDescending(q => q.Priority).ThenByDescending(q => q.EntityId);
+            }
+            else if (Content.SortOrder == "DESC-title-ASC")
+            {
+                positions = positions.OrderByDescending(q => q.Priority).ThenBy(q => q.Title);
             }
         }
-    </div>
-    
 
-    <div @Koi.Class("all='co-container-inner co-navigation co-navigation-431 co-navigation-image po-wrapper-inner' bs3='row' bs4,oth='row'")>
-        @foreach (var p in positions)
+        @if(Permissions.UserMayEditContent)
         {
-            var positionCategories = ((IEnumerable<dynamic>)p.Categories).Select(x => x.Key);
+            <div class="po-admin-table-wrapper">
+                <table class="po-admin-table">
+                    <tr>
+                        <td>
+                            <span class="po-admin-warning">Nur als Administrator sichtbar</span>
+                        </td>
+                        <td>
 
-            <div @Koi.Class("all='sc-element po-position' bs3='col col-xs-12' bs4,oth='col-12'") data-filterelem="@Json.Encode(positionCategories)">
-                @Edit.Toolbar(p)
-                
-                @if(!String.IsNullOrEmpty(p.Link))
-                {
-                    @:<a target="_blank" class="co-link-box" title="@p.Name" href="@p.Link">
-                }
-                
-                <div class="row">
-                    @*
-                    @if(!String.IsNullOrEmpty(p.Image))
-                    {
-                        <div class="co-img-wrapper col-4">
-                            <img src="@p.Image?w=690&amp;h=345&amp;quality=80&amp;mode=crop&amp;scale=both" alt="@p.Name" />
-                        </div>
-                    }else { 
-                        <div class="co-img-placeholder" style="background-color: transparent;"></div>
-                    }
-                    *@
-                    
-                    <div class="col-9">
-                        <h3>@p.Name</h3>
-                        <div class="po-categories-list">
-                            <span>@p.Date.ToString("dd.MM.yyyy")</span>
-                        </div>
-        
-                        @if(!String.IsNullOrEmpty(p.Description))
-                        {
-                            <p>@p.Description</p>
-                        }
-                        
-                        <span class="co-link"> @App.Resources.LabelShowMore&nbsp;<span class="" aria-hidden="true">&rsaquo;</span>
-                    </div>
-                    <div class="col-3 po-categories-container">
-                        @foreach (var c in p.Categories) {
-                            <span>@c.Name</span>
-                        }
-                    </div>
-                </div>
-                @if(!String.IsNullOrEmpty(p.Link))
-                {
-                    @:</a>
-                }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Konfiguration verwalten:</span>
+                        </td>
+                        <td>
+                            @Edit.Toolbar(Content)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Kategorien verwalten:</span>
+                        </td>
+                        <td>
+                            @Edit.Toolbar(toolbar: new object[] { 
+                                new { 
+                                    showCondition = true,
+                                    command = new { 
+                                        action = "contentitems", 
+                                        contentType= "Category" 
+                                    }
+                                }
+                            }, settings: new { hover="none", show = "always" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Stellen verwalten:</span>
+                        </td>
+                        <td>
+                            @Edit.Toolbar(toolbar: new object[] { 
+                                new { 
+                                    showCondition = true,
+                                    command = new { 
+                                        action = "contentitems", 
+                                        contentType= "Position" 
+                                    }
+                                }
+                            }, settings: new { hover="none", show = "always" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Stelle erstellen:</span>
+                        </td>
+                        <td>
+                            @Edit.Toolbar(toolbar: new object[] { 
+                                new { 
+                                    showCondition = true,
+                                    command = new { 
+                                        action = "new", 
+                                        contentType= "Position" 
+                                    }
+                                }
+                            }, settings: new { hover="none", show = "always" })
+                        </td>
+                    </tr>
+                </table>            
             </div>
         }
+
+        <div class="po-wrapper sc-element">
+            @if(cats.Count == 0)
+            { 
+                cats = AsDynamic(App.Data["Category"]);
+            }
+
+            <div class="po-categories-list">
+                @if (Content.Categories.Count > 1 || Content.Categories.Count == 0) {
+                    <div  @Koi.Class("all='po-category-button' bs3='badge' bs4,oth='badge badge-pill'") data-filter="nofilter">
+                        @App.Resources.LabelNoFilter
+                    </div>
+                
+                    foreach (var c in cats)
+                    {
+                        <div @Koi.Class("all='po-category-button' bs3='badge' bs4,oth='badge badge-pill'") data-filter="@c.Key">
+                            @c.Name
+                        </div>
+                    }
+                }
+            </div>
+            
+
+            <div @Koi.Class("all='co-container-inner co-navigation co-navigation-431 co-navigation-image po-wrapper-inner' bs3='row' bs4,oth='row'")>
+                @foreach (var p in positions)
+                {
+                    var positionCategories = ((IEnumerable<dynamic>)p.Categories).Select(x => x.Key);
+
+                    <div @Koi.Class("all='sc-element po-position' bs3='col col-xs-12' bs4,oth='col-12'") data-filterelem="@Json.Encode(positionCategories)">
+                        @Edit.Toolbar(p)
+                        
+                        @if(!String.IsNullOrEmpty(p.Link))
+                        {
+                            @:<a target="_blank" class="co-link-box" title="@p.Name" href="@p.Link">
+                        }
+                        
+                        <div class="row">
+                            @*
+                            @if(!String.IsNullOrEmpty(p.Image))
+                            {
+                                <div class="co-img-wrapper col-4">
+                                    <img src="@p.Image?w=690&amp;h=345&amp;quality=80&amp;mode=crop&amp;scale=both" alt="@p.Name" />
+                                </div>
+                            }else { 
+                                <div class="co-img-placeholder" style="background-color: transparent;"></div>
+                            }
+                            *@
+                            
+                            <div class="col-9">
+                                <h3>@p.Name</h3>
+                                <div class="po-categories-list">
+                                    <span>@p.Date.ToString("dd.MM.yyyy")</span>
+                                </div>
+                
+                                @if(!String.IsNullOrEmpty(p.Description))
+                                {
+                                    <p>@p.Description</p>
+                                }
+                                
+                                <span class="co-link"> @App.Resources.LabelShowMore&nbsp;<span class="" aria-hidden="true">&rsaquo;</span>
+                            </div>
+                            <div class="col-3 po-categories-container">
+                                @foreach (var c in p.Categories) {
+                                    <span>@c.Name</span>
+                                }
+                            </div>
+                        </div>
+                        @if(!String.IsNullOrEmpty(p.Link))
+                        {
+                            @:</a>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </div>
+
 
 <link rel="stylesheet" href="/Portals/0/2sxc/Content/dist/@(Koi.PickCss("bs3,bs4", "bs3")).css" >
 <script src="@App.Path/dist/app-bundle.min.js" data-enableoptimizations="true" ></script>
 <script>
-    new app.App();
+    new jobapp.App(@Dnn.Module.ModuleID);
 </script>
