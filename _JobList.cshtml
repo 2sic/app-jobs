@@ -1,0 +1,96 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<div class="app-jobs2-wrapper app-jobs2-@CmsContext.Module.Id" @Edit.TagToolbar(Content)>
+  @{
+    var pageCss = GetService<Connect.Koi.ICss>();
+
+    var categories = AsList(Data["Categories"]);
+    var jobs = AsList(Data["Jobs"]);
+
+    switch (Content.SortOrder as string)
+    {
+      case "DESC-date-DESC": 
+        jobs = jobs.OrderByDescending(q => q.Priority).ThenByDescending(q => q.Date);
+        break;
+      case "DESC-id-ASC": 
+        jobs = jobs.OrderByDescending(q => q.Priority).ThenBy(q => q.EntityId);
+        break;
+      case "DESC-id-DESC": 
+        jobs = jobs.OrderByDescending(q => q.Priority).ThenByDescending(q => q.EntityId);
+        break;
+      case "DESC-title-ASC": 
+        jobs = jobs.OrderByDescending(q => q.Priority).ThenBy(q => q.Title);
+        break;
+    }
+  }
+
+  @Html.Partial("_JobList.PartAdmin.cshtml")
+
+  <div class="po-wrapper sc-element">
+    @if(categories.Count() == 0)
+    { 
+      categories = AsList(Data["Categories"]);
+    }
+
+    @if (Settings.UseCategories) {
+      <div class="po-categories-list">
+        @if (categories.Count() > 1 || categories.Count() == 0) {
+          <div class='po-category-button @(pageCss.Is("bs3") ? "btn btn-primary" : "btn btn-outline-primary")' data-filter="nofilter">
+            @Resources.LabelNoFilter
+          </div>
+      
+          foreach (var c in categories)
+          {
+            <div class='po-category-button sc-element @(pageCss.Is("bs3") ? "btn btn-primary" : "btn btn-outline-primary")' data-filter="@c.Key">
+              @Edit.Toolbar(c, actions: "edit")
+              @c.Name
+            </div>
+          }
+        }
+      </div>
+    }
+
+    <div class='co-container-inner co-navigation co-navigation-431 co-navigation-image po-wrapper-inner row'>
+      @foreach (var p in jobs)
+      {
+        var positionCategories = ((IEnumerable<dynamic>)p.Categories).Select(x => x.Key);
+
+        <div class='sc-element po-position @(pageCss.Is("bs3") ? "col col-xs-12" : "col-12")' data-filterelem="@Json.Encode(positionCategories)">
+          @Edit.Toolbar(p)
+          
+          @if(Text.Has(p.Link))
+          {
+            @:<a target="_blank" class="co-link-box" title="@p.Name" href="@p.Link">
+          }
+          
+          <div class="row">                            
+            <div class='@(pageCss.Is("bs3") ? "col-xs-9" : "col-9")'>
+              <h3>@p.Name</h3>
+              <div class="po-categories-list">
+                <span>@p.Date.ToString("dd.MM.yyyy")</span>
+              </div>
+
+              @if(Text.Has(p.Description))
+              {
+                <p>@p.Description</p>
+              }
+              
+              <span class="co-link"> @Resources.LabelShowMore&nbsp;<span class="" aria-hidden="true">&rsaquo;</span>
+            </div>
+            <div class='po-categories-container @(pageCss.Is("bs3") ? "col-xs-3" : "col-3")'>
+              @foreach (var c in p.Categories) {
+                <span>@c.Name</span>
+              }
+            </div>
+          </div>
+          @if(Text.Has(p.Link))
+          {
+            @:</a>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+@Html.Partial("_JobList.PartAssets.cshtml")

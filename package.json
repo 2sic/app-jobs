@@ -9,11 +9,23 @@
   "author": "2sic internet solutions",
   "license": "MIT",
   "devDependencies": {
+    "autoprefixer": "^10.3.6",
+    "file-loader": "^6.2.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "mini-css-extract-plugin": "^2.3.0",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
     "css-loader": "^2.1.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "ts-loader": "^5.3.3",
-    "typescript": "^3.3.3333"
+    "typescript": "^3.3.3333",
+    "postcss-loader": "^6.1.1",
+    "sass": "^1.42.1",
+    "terser-webpack-plugin": "^5.2.4",
+    "webpack": "^5.55.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-fix-style-only-entries": "^0.6.1",
+    "webpackbar": "^4.0.0"
   },
   "dependencies": {
     "@types/jquery": "^3.3.29"
