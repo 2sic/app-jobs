@@ -1,85 +1,85 @@
 // Styles for theoutput of the categories and positions
 .po-wrapper {
-    .po-categories-list {
-        margin-bottom: $grid-gutter-width/2;
+  .po-categories-list {
+    margin-bottom: $grid-gutter-width/2;
+  }
+
+  .po-wrapper-inner {
+    transition: opacity .4s ease-in-out;
+    padding: $grid-gutter-width/2;
+
+    .po-position {
+      padding: $grid-gutter-width/2;
+      transition: background .2s ease;
+
+      &.po-odd {
+        background: #F9f9f9;
+
+        &:hover {
+          background: #E1E5E5;
+        }
+      }
+
+      &:hover {
+        background: #E1E5E5;
+
+        .co-link {
+          text-decoration: underline;
+          color: $primary;
+        }
+      }
+
+      h3 {
+        margin: 0;
+      }
+
+      > .co-link-box {
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      .po-categories-list {
+        margin: 0 0 7px 0;
+        
+        > span {
+          font-size: 13px;
+          color: $gray-500;
+
+          &:first-of-type:after {
+            content: "";
+          }
+          &:after {
+            content: ",";
+          }
+          &:last-of-type:after {
+            content: "";
+          }
+        }
+      }    
     }
 
-    .po-wrapper-inner {
-        transition: opacity .4s ease-in-out;
-        padding: $grid-gutter-width/2;
-
-        .po-position {
-            padding: $grid-gutter-width/2;
-            transition: background .2s ease;
-
-            &.po-odd {
-                background: #F9f9f9;
-
-                &:hover {
-                    background: #E1E5E5;
-                }
-            }
-
-            &:hover {
-                background: #E1E5E5;
-
-                .co-link {
-                    text-decoration: underline;
-                    color: $primary;
-                }
-            }
-
-            h3 {
-                margin: 0;
-            }
-
-            > .co-link-box {
-                &:hover {
-                    text-decoration: none;
-                }
-            }
-
-            .po-categories-list {
-                margin: 0 0 7px 0;
-                
-                > span {
-                    font-size: 13px;
-                    color: $gray-500;
-
-                    &:first-of-type:after {
-                        content: "";
-                    }
-                    &:after {
-                        content: ",";
-                    }
-                    &:last-of-type:after {
-                        content: "";
-                    }
-                }
-            }    
-        }
-
-        .po-categories-container {
-            text-align: right;
-            
-            > span {
-                color: $primary;
-                font-weight: 600;
-            }
-        }
+    .po-categories-container {
+      text-align: right;
+      
+      > span {
+        color: $primary;
+        font-weight: 600;
+      }
     }
+  }
 }
 
 // Styles for the Admin UI
 .po-admin-table-wrapper {
-    border: 1px dashed red;
-    color: red;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 30px;
+  border: 1px dashed red;
+  color: red;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 30px;
 
-    .po-admin-warning {
-        text-transform: uppercase;
-        font-weight: bold;
-    }
+  .po-admin-warning {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
 }
