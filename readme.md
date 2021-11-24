@@ -4,7 +4,7 @@
 
 > This is a [2sxc](https://2sxc.org) App for [DNN ☢️](https://www.dnnsoftware.com/) and [Oqtane 💧](https://www.oqtane.org/)
 
-This **Mobius Forms** App is an add-on to DNN. It is _the most customizable Form extension_ in the DNN ecosystem.
+This **Jobs** App is an add-on to DNN. It is _the most customizable Form extension_ in the DNN ecosystem.
 
 | Aspect              | Status | Comments or Version |
 | ------------------- | :----: | ------------------- |
@@ -31,7 +31,7 @@ This means that it
 The app is built with the [pattern **Don't be DAFT**][daft] (DAFT = Densely Abstract Features for Techies), aka the **Anti-Abstraction** pattern. 
 So customizing it is mostly done using common technologies like HTML, JS and some C#. 
 
-## Quick Intro To The Mobius Forms App for DNN
+## Quick Intro To The Jobs App for DNN
 A [DNN App][2sxc] is like a DNN module, just way better :). Since this is an open-code/open-source 2sxc-app, you can customize it to be anything you want! This list just shows what it already does, so you know what you get out-of-the-first-box.
 
 Because it's so simple and uses 2sxc, you can easily
