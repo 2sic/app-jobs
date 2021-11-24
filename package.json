@@ -1,5 +1,5 @@
 {
-  "name": "2sic-jobs-app",
+  "name": "app-jobs",
   "version": "02.00.00",
   "description": "The standard App for 2sic to use for Job Lists.",
   "main": "(none)",
@@ -29,7 +29,6 @@
     "webpackbar": "^5.0.2"
   },
   "dependencies": {
-    "@types/jquery": "^3.5.8",
     "bootstrap": "^4.4.1"
   }
 }
