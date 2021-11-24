@@ -1,96 +1,70 @@
 @inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
-<div class="app-jobs2-wrapper app-jobs2-@CmsContext.Module.Id" @Edit.TagToolbar(Content)>
-  @{
-    var pageCss = GetService<Connect.Koi.ICss>();
+@{
+  var pageCss = GetService<Connect.Koi.ICss>();
 
-    var categories = AsList(Data["Categories"]);
-    var jobs = AsList(Data["Jobs"]);
+  var categories = AsList(Data["Categories"]);
+  var jobs = AsList(Data["Jobs"]);
+  var domAttribute = "app-jobs2-" + CmsContext.Module.Id;
+}
 
-    switch (Content.SortOrder as string)
-    {
-      case "DESC-date-DESC": 
-        jobs = jobs.OrderByDescending(q => q.Priority).ThenByDescending(q => q.Date);
-        break;
-      case "DESC-id-ASC": 
-        jobs = jobs.OrderByDescending(q => q.Priority).ThenBy(q => q.EntityId);
-        break;
-      case "DESC-id-DESC": 
-        jobs = jobs.OrderByDescending(q => q.Priority).ThenByDescending(q => q.EntityId);
-        break;
-      case "DESC-title-ASC": 
-        jobs = jobs.OrderByDescending(q => q.Priority).ThenBy(q => q.Title);
-        break;
-    }
+<div class="app-jobs2-toolbar">
+  @Edit.Toolbar(Content, toolbar: new [] { "+new&title=New Job?contentType=Job" } )
+</div>
+<div @domAttribute class="app-jobs2">
+  @if (Settings.UseCategories) {
+    <div class="app-jobs2-categories-list">
+      @if (categories.Count() != 1) {
+        <a app-jobs2-category-button class='@(pageCss.Is("bs3") ? "btn btn-primary" : "btn btn-outline-primary")' app-jobs2-filter="nofilter" href='@Link.To()'>
+          @Resources.LabelNoFilter
+        </a>
+  
+        foreach (var category in categories)
+        {
+          <a app-jobs2-category-button class='@(pageCss.Is("bs3") ? "btn btn-primary" : "btn btn-outline-primary")' app-jobs2-filter="@category.Key" href='@Link.To(parameters: "category=" + category.Key)'>
+            @category.Name
+          </a>
+        }
+      }
+    </div>
   }
 
-  @Html.Partial("_JobList.PartAdmin.cshtml")
-
-  <div class="po-wrapper sc-element">
-    @if(categories.Count() == 0)
-    { 
-      categories = AsList(Data["Categories"]);
-    }
-
-    @if (Settings.UseCategories) {
-      <div class="po-categories-list">
-        @if (categories.Count() > 1 || categories.Count() == 0) {
-          <div class='po-category-button @(pageCss.Is("bs3") ? "btn btn-primary" : "btn btn-outline-primary")' data-filter="nofilter">
-            @Resources.LabelNoFilter
-          </div>
-      
-          foreach (var c in categories)
-          {
-            <div class='po-category-button sc-element @(pageCss.Is("bs3") ? "btn btn-primary" : "btn btn-outline-primary")' data-filter="@c.Key">
-              @Edit.Toolbar(c, actions: "edit")
-              @c.Name
+  <div class='app-jobs2-list row'>
+    @foreach (var job in jobs)
+    {
+      var jobCategories = ((IEnumerable<dynamic>)job.Categories).Select(x => x.Key);
+      <div @Edit.TagToolbar(job) class='app-jobs2-job @(pageCss.Is("bs3") ? "col col-xs-12" : "col-12")' app-jobs2-filterelem="@Json.Encode(jobCategories)">
+        @if(Text.Has(job.Link))
+        {
+          @:<a target="_blank" class="app-jobs2-link-box" title="@job.Name" href="@job.Link">
+        }
+        <div class="row">                            
+          <div class='@(pageCss.Is("bs3") ? "col-xs-9" : "col-9")'>
+            <h3>@job.Name</h3>
+            <div class="app-jobs2-categories-list">
+              <span>@job.Date.ToString("dd.MM.yyyy")</span>
             </div>
-          }
+
+            @if(Text.Has(job.Description))
+            {
+              <p>@job.Description</p>
+            }
+
+            <span class="app-jobs2-link"> @Resources.LabelShowMore&nbsp;<span class="" aria-hidden="true">&rsaquo;</span>
+          </div>
+          <div class='app-jobs2-categories-container @(pageCss.Is("bs3") ? "col-xs-3" : "col-3")'>
+            @foreach (var category in job.Categories) {
+              <span>@category.Name</span>
+            }
+          </div>
+        </div>
+        @if(Text.Has(job.Link))
+        {
+          @:</a>
         }
       </div>
     }
-
-    <div class='co-container-inner co-navigation co-navigation-431 co-navigation-image po-wrapper-inner row'>
-      @foreach (var p in jobs)
-      {
-        var positionCategories = ((IEnumerable<dynamic>)p.Categories).Select(x => x.Key);
-
-        <div class='sc-element po-position @(pageCss.Is("bs3") ? "col col-xs-12" : "col-12")' data-filterelem="@Json.Encode(positionCategories)">
-          @Edit.Toolbar(p)
-          
-          @if(Text.Has(p.Link))
-          {
-            @:<a target="_blank" class="co-link-box" title="@p.Name" href="@p.Link">
-          }
-          
-          <div class="row">                            
-            <div class='@(pageCss.Is("bs3") ? "col-xs-9" : "col-9")'>
-              <h3>@p.Name</h3>
-              <div class="po-categories-list">
-                <span>@p.Date.ToString("dd.MM.yyyy")</span>
-              </div>
-
-              @if(Text.Has(p.Description))
-              {
-                <p>@p.Description</p>
-              }
-              
-              <span class="co-link"> @Resources.LabelShowMore&nbsp;<span class="" aria-hidden="true">&rsaquo;</span>
-            </div>
-            <div class='po-categories-container @(pageCss.Is("bs3") ? "col-xs-3" : "col-3")'>
-              @foreach (var c in p.Categories) {
-                <span>@c.Name</span>
-              }
-            </div>
-          </div>
-          @if(Text.Has(p.Link))
-          {
-            @:</a>
-          }
-        </div>
-      }
-    </div>
   </div>
 </div>
 
-@Html.Partial("_JobList.PartAssets.cshtml")
+@Html.Partial("_JobList.PartAssets.cshtml", new { DomAttribute = domAttribute })

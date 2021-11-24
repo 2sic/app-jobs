@@ -1,14 +1,18 @@
 // Styles for theoutput of the categories and positions
-.app-jobs2-wrapper {
-  .po-categories-list {
+.app-jobs2-toolbar {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.app-jobs2 {
+  .app-jobs2-categories-list {
     margin-bottom: $grid-gutter-width/2;
   }
 
-  .po-wrapper-inner {
+  .app-jobs2-list {
     transition: opacity .4s ease-in-out;
     padding: $grid-gutter-width/2;
 
-    .po-position {
+    .app-jobs2-job {
       padding: $grid-gutter-width/2;
       transition: background .2s ease;
 
@@ -23,7 +27,7 @@
       &:hover {
         background: #E1E5E5;
 
-        .co-link {
+        .app-jobs2-link {
           text-decoration: underline;
           color: $primary;
         }
@@ -33,13 +37,13 @@
         margin: 0;
       }
 
-      > .co-link-box {
+      > .app-jobs2-link-box {
         &:hover {
           text-decoration: none;
         }
       }
 
-      .po-categories-list {
+      .app-jobs2-categories-list {
         margin: 0 0 7px 0;
         
         > span {
@@ -59,7 +63,7 @@
       }    
     }
 
-    .po-categories-container {
+    .app-jobs2-categories-container {
       text-align: right;
       
       > span {
@@ -67,19 +71,5 @@
         font-weight: 600;
       }
     }
-  }
-}
-
-// Styles for the Admin UI
-.po-admin-table-wrapper {
-  border: 1px dashed red;
-  color: red;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 30px;
-
-  .po-admin-warning {
-    text-transform: uppercase;
-    font-weight: bold;
   }
 }

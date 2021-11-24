@@ -9,11 +9,11 @@ const WebpackBar = require('webpackbar');
 module.exports = (env) => {
   return {
     entry: {
-      styles: `./${env.style}/styles/${env.style}.scss`,      
+      styles: `./src/styles/${env.style}.scss`,      
       scripts: './src/ts/index.ts',
     },
     output: {
-      path: path.resolve(__dirname, `${env.style}/dist`),
+      path: path.resolve(__dirname, `dist`),
       filename: '[name].min.js',
     },
     mode: 'production',
@@ -50,7 +50,7 @@ module.exports = (env) => {
     plugins: [
       new FixStyleOnlyEntriesPlugin(),
       new MiniCssExtractPlugin({
-        filename: '[name].min.css',
+        filename: `${env.style}.min.css`,
       }),
       new WebpackBar(),
       new FriendlyErrorsWebpackPlugin()
