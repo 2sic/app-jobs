@@ -33,7 +33,7 @@
     @foreach (var job in jobs)
     {
       var jobCategories = ((IEnumerable<dynamic>)job.Categories).Select(x => x.Key);
-      <div @Edit.TagToolbar(job) class='app-jobs2-job @(pageCss.Is("bs3") ? "col col-xs-12" : "col-12")' app-jobs2-filterelem="@Json.Encode(jobCategories)">
+      <div @Edit.TagToolbar(job) class='app-jobs2-job @(pageCss.Is("bs3") ? "col col-xs-12" : "col-12")' app-jobs2-filterelem="@Convert.Json.ToJson(jobCategories)">
         @if(Text.Has(job.Link))
         {
           @:<a target="_blank" class="app-jobs2-link-box" title="@job.Name" href="@job.Link">
