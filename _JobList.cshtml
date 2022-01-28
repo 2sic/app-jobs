@@ -10,11 +10,7 @@
   var isBs3 = pageCss.Is("bs3");
 }
 
-<div class="app-jobs2-toolbar">
-  @* TODO: no-float - why? *@
-  @Edit.Toolbar(Content, toolbar: new [] { "+new&title=New Job?contentType=Job" } )
-</div>
-<div @domAttribute class="app-jobs2">
+<div @domAttribute class="app-jobs2" @Edit.TagToolbar(Content, toolbar: new [] { "+new&title=New Job?contentType=Job" } )>
   @if (Settings.UseCategories) {
     <div class="app-jobs2-categories-list">
       @if (categories.Count() != 1) {
