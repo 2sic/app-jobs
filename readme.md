@@ -46,3 +46,4 @@ The Source Code is all here - so you can easily customize to your hearts desire!
     * Updated to v12 best-practices
     * Removed all jQuery dependencies
     * Hybrid - now works in Dnn and Oqtane
+    * Enabled data-optimizations
