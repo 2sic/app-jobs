@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.02.00" ExportDate="2022-02-03T16:40:25.8806058+01:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.02.00" ExportDate="2022-03-08T08:53:37.5788861+01:00">
   <Header>
     <App Guid="c8de709d-ea82-4718-8939-ad987538fd44" />
     <Language Default="en-us" />
@@ -1042,12 +1042,24 @@
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="41ba3ded-dcf7-4bc6-a84b-949696572612" AttributeSetName="Job" EntityGUID="898af6e6-5918-4d5d-aecc-995d82782695">
       <Value Key="Categories" Value="02e0e381-70f2-489c-b3d3-7cfcb240fc07" Type="Entity" />
-      <Value Key="Date" Value="2019-01-01T00:00:00" Type="DateTime" />
-      <Value Key="Description" Value="Websites und Web-Technologien sind voll dein Ding? Du liebst es Herausforderungen zu meistern." Type="String" />
-      <Value Key="Image" Value="" Type="Hyperlink" />
-      <Value Key="Link" Value="https://www.2sic.com/jobs/frontend-developer" Type="Hyperlink" />
-      <Value Key="Name" Value="Frontend Developer" Type="String" />
-      <Value Key="Priority" Value="1" Type="Number" />
+      <Value Key="Date" Value="2022-03-08T00:00:00" Type="DateTime">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="Websites und Web-Technologien sind voll dein Ding? Du liebst es Herausforderungen zu meistern." Type="String">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Image" Value="" Type="Hyperlink">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="https://www.jobs.ch/en/vacancies/?term=Frontend%20Developer" Type="Hyperlink">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="Frontend Developer" Type="String">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Priority" Value="1" Type="Number">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="5f2d8846-bfdb-4ddc-b84c-70b9c55ec196" Json="True">
       <Value Key="ContentDemoEntity" Value="6297e80d-e36b-4ed8-b800-e481b1ffdf00" Type="Entity" />
@@ -1073,21 +1085,45 @@
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="41ba3ded-dcf7-4bc6-a84b-949696572612" AttributeSetName="Job" EntityGUID="394499b9-18a1-490e-adcd-e0025a5d1a43">
       <Value Key="Categories" Value="02e0e381-70f2-489c-b3d3-7cfcb240fc07" Type="Entity" />
-      <Value Key="Date" Value="2019-01-05T00:00:00" Type="DateTime" />
-      <Value Key="Description" Value="Du liebst neue und kreative Web-Lösungen und freust Dich, wenn Du diese mit spannenden Web-Projekten umsetzen kannst?" Type="String" />
-      <Value Key="Image" Value="" Type="Hyperlink" />
-      <Value Key="Link" Value="https://www.2sic.com/jobs/web-programmierer" Type="Hyperlink" />
-      <Value Key="Name" Value="Web Developer (JS)" Type="String" />
-      <Value Key="Priority" Value="1" Type="Number" />
+      <Value Key="Date" Value="2022-06-24T00:00:00" Type="DateTime">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="Du liebst neue und kreative Web-Lösungen und freust Dich, wenn Du diese mit spannenden Web-Projekten umsetzen kannst?" Type="String">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Image" Value="" Type="Hyperlink">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="https://www.jobs.ch/en/vacancies/?term=Web%20Developer" Type="Hyperlink">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="Web Developer (JS)" Type="String">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Priority" Value="1" Type="Number">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="41ba3ded-dcf7-4bc6-a84b-949696572612" AttributeSetName="Job" EntityGUID="cb011c67-59ed-4447-9b03-6562de5725b5">
       <Value Key="Categories" Value="02e0e381-70f2-489c-b3d3-7cfcb240fc07" Type="Entity" />
-      <Value Key="Date" Value="2019-01-08T00:00:00" Type="DateTime" />
-      <Value Key="Description" Value="Du möchtest dein Wissen einbringen und mithelfen geniale Frontend-Lösungen für unsere Kunden zu erschaffen? Dann bewirb dich bei uns und werde ein Teil der 2sic-Crew." Type="String" />
-      <Value Key="Image" Value="" Type="Hyperlink" />
-      <Value Key="Link" Value="https://www.2sic.com/jobs/senior-web-javascript-developer" Type="Hyperlink" />
-      <Value Key="Name" Value="Senior JavaScript Developer" Type="String" />
-      <Value Key="Priority" Value="3" Type="Number" />
+      <Value Key="Date" Value="2022-10-12T00:00:00" Type="DateTime">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="Du möchtest dein Wissen einbringen und mithelfen geniale Frontend-Lösungen für unsere Kunden zu erschaffen? Dann bewirb dich bei uns und werde ein Teil der 2sic-Crew." Type="String">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Image" Value="" Type="Hyperlink">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="https://www.jobs.ch/en/vacancies/?term=Senior%20JavaScript%20Developer" Type="Hyperlink">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="Senior JavaScript Developer" Type="String">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Priority" Value="3" Type="Number">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="5" AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="ce315cdd-5ade-4f86-9692-698516a05f74" Json="True" KeyString="14e02e5e-4d56-4bd8-afd5-1fd5907e9604">
       <Value Key="Description" Value="" Type="String" />
@@ -1145,12 +1181,24 @@
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="41ba3ded-dcf7-4bc6-a84b-949696572612" AttributeSetName="Job" EntityGUID="28e7cd12-893d-4c76-aa33-16510f094100">
       <Value Key="Categories" Value="6fd718be-b542-4726-a44e-e1d900360ba8,b6a47c31-92ac-4dfd-ba8f-56f31974758a" Type="Entity" />
-      <Value Key="Date" Value="2019-01-10T00:00:00" Type="DateTime" />
-      <Value Key="Description" Value="Eine Stelle als System Engineer. Lorem Ipsum Dolor si amet." Type="String" />
-      <Value Key="Image" Value="file:1445" Type="Hyperlink" />
-      <Value Key="Link" Value="https://www.2sic.com/jobs/senior-web-javascript-developer" Type="Hyperlink" />
-      <Value Key="Name" Value="System Engineer" Type="String" />
-      <Value Key="Priority" Value="1" Type="Number" />
+      <Value Key="Date" Value="2022-08-21T00:00:00" Type="DateTime">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="Eine Stelle als System Engineer. Lorem Ipsum Dolor si amet." Type="String">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Image" Value="file:1445" Type="Hyperlink">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="https://www.jobs.ch/en/vacancies/?term=System%20Engineer" Type="Hyperlink">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="System Engineer" Type="String">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Priority" Value="1" Type="Number">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-ContentGroup" AttributeSetName="2SexyContent-ContentGroup" EntityGUID="92b093d2-69ea-4b20-9f6c-c39c6e9cec96" Json="True">
       <Value Key="Content" Value="b437dd7d-6910-4973-8b2e-a4063b5e09a9" Type="Entity" />
