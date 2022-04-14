@@ -47,3 +47,5 @@ The Source Code is all here - so you can easily customize to your hearts desire!
     * Removed all jQuery dependencies
     * Hybrid - now works in Dnn and Oqtane
     * Enabled data-optimizations
+* 2022-04 
+    * Moved access of Services to ToSic.Sxc.Services
