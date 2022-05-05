@@ -49,3 +49,4 @@ The Source Code is all here - so you can easily customize to your hearts desire!
     * Enabled data-optimizations
 * 2022-04 
     * Moved access of Services to ToSic.Sxc.Services
+    * Replaced data-enableoptimization with pageSvc.AssetAttributes()
