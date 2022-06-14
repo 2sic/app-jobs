@@ -6,16 +6,16 @@
 
 | Aspect              | Status | Comments or Version |
 | ------------------- | :----: | ------------------- |
-| 2sxc                | ✅    | requires 2sxc v12.05
+| 2sxc                | ✅    | requires 2sxc v13.10
 | Dnn                 | ✅    | For v7, v8 and v9
-| Oqtane 2            | ✅    | Requires v2.02
+| Oqtane 2            | ✅    | Requires v3.01+
 | No jQuery           | ✅    | 
 | Live Demo           | ➖    |
 | Install Checklist   | ✅    | See [Installation] on [azing.org](https://azing.org/2sxc)
 | Source & License    | ✅    | included, ISC/MIT
 | App Catalog         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/jobs-app-v2-hybrid-for-dnn-and-oqtane)
 | Screenshots         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/jobs-app-v2-hybrid-for-dnn-and-oqtane)
-| Best Practices      | ✅    | Uses v12.05 conventions
+| Best Practices      | ✅    | Uses v13.10 conventions
 | Bootstrap 3         | ✅    | optimized
 | Bootstrap 4         | ✅    | optimized
 | Bootstrap 5         | ✅    | optimized
