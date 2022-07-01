@@ -50,3 +50,6 @@ The Source Code is all here - so you can easily customize to your hearts desire!
 * 2022-04 
     * Moved access of Services to ToSic.Sxc.Services
     * Replaced data-enableoptimization with pageSvc.AssetAttributes()
+* 2022-06 v02.02.00
+    * Replaced all base classe with their 2sxc 14 equivalents
+    * Removed all GetService<> and started to use the new ServiceKit14

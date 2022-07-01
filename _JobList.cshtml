@@ -1,16 +1,16 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @{
-  var pageCss = GetService<Connect.Koi.ICss>();
-
   var categories = AsList(Data["Categories"]);
   var jobs = AsList(Data["Jobs"]);
   var domAttribute = "app-jobs2-" + CmsContext.Module.Id;
 
-  var isBs3 = pageCss.Is("bs3");
+  var isBs3 = Kit.Css.Is("bs3");
+
+  var contentToolbar = Kit.Toolbar.Default().New("Job", ui: "title=New Job");
 }
 
-<div @domAttribute class="app-jobs2" @Edit.TagToolbar(Content, toolbar: new [] { "+new&title=New Job?contentType=Job" } )>
+<div @domAttribute class="app-jobs2" @contentToolbar.For(Content)>
   @if (Settings.UseCategories) {
     <div class="app-jobs2-categories-list">
       @if (categories.Count() != 1) {
@@ -33,7 +33,7 @@
     @foreach (var job in jobs)
     {
       var jobCategories = ((IEnumerable<dynamic>)job.Categories).Select(x => x.Key);
-      <div @Edit.TagToolbar(job) class='app-jobs2-job @(isBs3 ? "col col-xs-12" : "col-12")' app-jobs2-filterelem="@Convert.Json.ToJson(jobCategories)">
+      <div @Edit.TagToolbar(job) class='app-jobs2-job @(isBs3 ? "col col-xs-12" : "col-12")' app-jobs2-filterelem="@Kit.Json.ToJson(jobCategories)">
         @if(Text.Has(job.Link))
         {
           @:<a target="_blank" class="app-jobs2-link-box" title="@job.Name" href="@job.Link">
