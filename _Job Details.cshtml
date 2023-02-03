@@ -1,0 +1,108 @@
+@using ToSic.Razor.Blade
+@inherits Custom.Hybrid.Razor14
+@{
+    var domAttribute = "app-jobs2-" + CmsContext.Module.Id;
+    // Get current job to show from the View-Query + some Helpers
+    var job = AsList(Data).FirstOrDefault();
+
+    @* Preflight: check if job found, else show notification and stop processing *@
+    if (job == null)
+    {
+        <h1>Stelle nicht gefunden</h1>
+        Kit.Page.SetHttpStatus(404, "Error: Job not Found.");
+        return;
+    }
+
+    var employmentTypes = AsList(job.EmploymentType as object).ToArray();
+
+    Kit.Page.SetTitle(job.Name, "Details");
+    #region Build JSON-LD
+    var jsonDescription = Tag.Strong(job.Description) + "<br/><br/>" + job.Intro + "<br/><br/>" +
+                          Tag.Strong(App.Resources.TasksHeading) + job.Tasks + Tag.Strong(App.Resources.QualificationsHeading) +
+                          job.Qualifications + Tag.Strong(App.Resources.OurOfferHeading) + job.OurOffer;
+
+    var jsonLd = new Dictionary<string, object> {
+        { "@context", "https://schema.org"},
+        { "@type", "JobPosting" },
+        { "title", job.Name },
+        { "description", jsonDescription},
+        { "datePosted", job.Date.ToString("s") },
+        { "hiringOrganization", new Dictionary<string, object> {
+            { "@type", "Organization" },
+            { "name", "2sic internet solutions GmbH" },
+            { "logo", CmsContext.Site.Url.Replace("/job-app", "") + "/Portals/job-app/2sxc/Jobs2/src/2sic-logo-square.png" },
+            { "sameAs", CmsContext.Site.Url }
+        }},
+        { "jobLocation", new Dictionary<string, object> {
+            {"@type", "Place"},
+            { "address", new Dictionary<string, object> {
+                { "@type", "PostalAddress" },
+                { "streetAddress", "Lang&auml;ulistrasse 62" },
+                { "addressLocality", "Buchs" },
+                { "addressRegion", "SG" },
+                { "postalCode", "9470" },
+                { "addressCountry", "CH" }
+
+            }}
+        }},
+        { "employmentType", employmentTypes.Select(e => e.Key) },
+        { "directApply", true },
+        { "identifier", new Dictionary<string, object> {
+            { "@type", "PropertyValue" },
+            { "name", "2sic" },
+            { "value", job.EntityId }
+        }}
+    };
+
+    Kit.Page.AddJsonLd(jsonLd);
+    #endregion
+}
+
+<div class="app-jobs2-details" @Edit.TagToolbar(Content)>
+    <div class="row mb-3 mb-lg-5">
+        <div class="col-md-7 order-md-first">
+            <h1 class="display-2">
+                <span class="mb-1 d-block">@App.Resources.NamePrefix</span>
+                @job.Name
+            </h1>
+            <div>@App.Resources.DatePosted: @job.Date.ToString("d")</div>
+        </div>
+        <div class="col-md-4 order-md-last offset-lg-1">
+            @if(Text.Has(job.Image)) {
+                @Kit.Image.Picture(job.Image, settings: "Content", factor: "1/2", imgClass: "rounded")
+            }
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-12 mb-2">
+            <h2>@job.Description</h2>
+            <p>&nbsp;</p>
+            <p style="white-space: pre-line">@job.Intro</p>
+        </div>
+    </div>
+
+    <div class="row align-items-center mb-3 mb-lg-4">
+        <div class="col-12 mb-2">
+            <h2>@App.Resources.TasksHeading</h2>
+            @Html.Raw(job.Tasks)
+        </div>
+    </div>
+
+    <div class="row align-items-center mb-3 mb-lg-4">
+        <div class="col-12">
+            <h2>@App.Resources.QualificationsHeading</h2>
+            @Html.Raw(job.Qualifications)
+        </div>
+    </div>
+
+    <div class="row align-items-center mb-3 mb-lg-4">
+        <div class="col-12 mb-2">
+            <h2>@App.Resources.OurOfferHeading</h2>
+            @Html.Raw(job.OurOffer)
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("_JobList.PartAssets.cshtml", new { DomAttribute = domAttribute })
