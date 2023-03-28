@@ -105,7 +105,7 @@ public class FieldBuilder : Custom.Hybrid.Code14
   public dynamic DropDown(string idString, bool required, string[] values) {
     var content = Tag.Select().Id(idString).Class("form-control");
     SetRequired(content, required, Resources.LabelRequired);
-    content.Add(Tag.Option("--Please Select--").Attr("value", ""));
+    content.Add(Tag.Option(Resources.SelectCountry).Attr("value", ""));
     foreach(var value in values){
       content.Add(Tag.Option(value));
     }
