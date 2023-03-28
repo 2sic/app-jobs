@@ -8,6 +8,12 @@
 }
 
 @if(!App.Settings.EnableRegistration) {
+	<div class="alert alert-danger" role="alert">
+    <span class="sr-only">Error:</span>
+    @Html.Raw(Resources.MessageRegistrationDisabled.Replace("<p>", "").Replace("</p>", ""))
+  </div>
+  <a href="@App.Settings.MainPage" class="btn btn-outline-primary">@Html.Raw(Resources.BtnBack)</a>
+	
 	Kit.Page.SetHttpStatus(404);
   return;
 }

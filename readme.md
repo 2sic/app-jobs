@@ -1,6 +1,6 @@
 <image src="app-icon.png" align="right" width="200px">
 
-# Jobs 2 App for .net CMSs
+# Jobs 3 App for .net CMSs
 
 > This is a [2sxc](https://2sxc.org) App for [DNN ☢️](https://www.dnnsoftware.com/) and [Oqtane 💧](https://www.oqtane.org/)
 
@@ -53,3 +53,6 @@ The Source Code is all here - so you can easily customize to your hearts desire!
 * 2022-06 v02.02.00
     * Replaced all base classe with their 2sxc 14 equivalents
     * Removed all GetService<> and started to use the new ServiceKit14
+* 2023-03 v03.00.00
+    * Added Registration Formular with App Settings
+    * Started to use the new Hybrid.Api15
