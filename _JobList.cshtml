@@ -38,7 +38,7 @@
   <div class='app-jobs2-list row'>
     @foreach (var job in jobs) {
       var jobCategories = ((IEnumerable<dynamic>)job.Categories).Select(x => x.Key);
-      var detailLink = Settings.Get("DetailsPage") + "/id/" + job.EntityId;
+      var detailLink = App.Settings.DetailsPage + "/id/" + job.EntityId;
 
       <div @Edit.TagToolbar(job) class='app-jobs2-job @(isBs3 ? "col col-xs-12" : "col-12")' app-jobs2-filterelem="@Kit.Json.ToJson(jobCategories)">
         <a target="_blank" class="app-jobs2-link-box" title="@job.Name" href="@detailLink">
@@ -67,4 +67,4 @@
   </div>
 </div>
 
-@Html.Partial("_JobList.PartAssets.cshtml", new { DomAttribute = domAttribute })
+@Html.Partial("shared/Assets.cshtml", new { DomAttribute = domAttribute })

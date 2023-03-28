@@ -115,7 +115,10 @@
     </div>
 
     <a href="@App.Settings.MainPage" class="btn btn-outline-secondary">@App.Resources.BtnBack</a>
+    @if(App.Settings.EnableRegistration) {
+        <a href="@App.Settings.RegistrationPage/jobId/@job.EntityId" class="btn btn-primary">@App.Resources.BtnRegistration</a>
+    }
 </div>
 
 
-@Html.Partial("_JobList.PartAssets.cshtml", new { DomAttribute = domAttribute })
+@Html.Partial("shared/Assets.cshtml", new { DomAttribute = domAttribute })

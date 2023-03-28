@@ -3,12 +3,12 @@
 @{
   // 2. Include Bootstrap4 if the framework isn't known
   if (Kit.Css.IsUnknown) {
-    Kit.Page.Activate("Bootstrap4");
+    Kit.Page.Activate("Bootstrap5");
   }
 
   Kit.Page.Activate("turnOn"); // see https://r.2sxc.org/turnon
 }
 
 <turnOn turn-on='{"run": "window.appJobs2.init()", "data": { "domAttribute": "@DynamicModel.DomAttribute", "currentCategory": "@CmsContext.Page.Parameters["category"]" }}'></turnOn>
-<link rel="stylesheet" href='@App.Path/dist/@(Kit.Css.Is("bs3") ? "bs3" : "bs4").min.css' @Kit.Page.AssetAttributes()>
+<link rel="stylesheet" href='@App.Path/dist/@(Kit.Css.Is("bs3") ? "bs3" : Kit.Css.Is("bs4") ? "bs4" : "bs5").min.css' @Kit.Page.AssetAttributes()>
 <script src="@App.Path/dist/scripts.min.js" @Kit.Page.AssetAttributes()></script>

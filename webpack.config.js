@@ -17,6 +17,7 @@ module.exports = (env) => {
     watch: true,
     stats: {
       all: false,
+      errors: true,
       assets: true
     },
     cache: {
