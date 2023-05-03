@@ -22,7 +22,7 @@ public class FormController : Custom.Hybrid.Api15
     contactFormRequest = new Dictionary<string, object>(contactFormRequest, StringComparer.OrdinalIgnoreCase);
 
     // 0. Pre-Check - validate recaptcha if enabled in the Content object (the form configuration)
-    // if(Content.Recaptcha ?? false) {
+    // if (Content.Recaptcha ?? false) {
     //   Log.Add("checking Recaptcha");
     //   CreateInstance("Parts/Recaptcha.cs").Validate(contactFormRequest["Recaptcha"] as string);
     // }
@@ -49,7 +49,7 @@ public class FormController : Custom.Hybrid.Api15
     contactFormRequest["RawData"] = CreateRawDataEntry(contactFormRequest);
     // add Title (if non given), in case the Content-Type would benefit of an automatic title
     var addTitle = !contactFormRequest.ContainsKey("Title");
-    if(addTitle) contactFormRequest["Title"] = "Form " + DateTime.Now.ToString("s");
+    if (addTitle) contactFormRequest["Title"] = "Form " + DateTime.Now.ToString("s");
 
     // Automatically full-save each request into a system-protocol content-type
     // This helps to debug or find submissions in case something wasn't configured right
@@ -65,9 +65,9 @@ public class FormController : Custom.Hybrid.Api15
     var files = new List<ToSic.Sxc.Adam.IFile>();
 
     // Save files to Adam
-    if(contactFormRequest.ContainsKey("Files")) {
+    if (contactFormRequest.ContainsKey("Files")) {
       Log.Add("Found files, will save");
-      foreach(var file in (AsDynamic(contactFormRequest["Files"])))
+      foreach (var file in (AsDynamic(contactFormRequest["Files"])))
       {
         var data = System.Convert.FromBase64String((file["Encoded"]).Split(',')[1]);
         files.Add(SaveInAdam(stream: new MemoryStream(data), fileName: file["Name"], contentType: "Registrations", guid: guid, field: file["Field"]));
@@ -100,7 +100,7 @@ public class FormController : Custom.Hybrid.Api15
   private void RemoveKeys(Dictionary<string,object> contactFormRequest, string[] badKeys)
   {
     foreach (var key in badKeys)
-      if(contactFormRequest.ContainsKey(key))
+      if (contactFormRequest.ContainsKey(key))
         contactFormRequest.Remove(key);
   }
 }

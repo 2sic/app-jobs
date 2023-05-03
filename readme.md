@@ -6,7 +6,7 @@
 
 | Aspect              | Status | Comments or Version |
 | ------------------- | :----: | ------------------- |
-| 2sxc                | ✅    | requires 2sxc v13.10
+| 2sxc                | ✅    | requires 2sxc v16.00
 | Dnn                 | ✅    | For v7, v8 and v9
 | Oqtane 2            | ✅    | Requires v3.01+
 | No jQuery           | ✅    | 
@@ -43,16 +43,20 @@ The Source Code is all here - so you can easily customize to your hearts desire!
 ## History
 
 * 2021-11
-    * Updated to v12 best-practices
-    * Removed all jQuery dependencies
-    * Hybrid - now works in Dnn and Oqtane
-    * Enabled data-optimizations
-* 2022-04 
-    * Moved access of Services to ToSic.Sxc.Services
-    * Replaced data-enableoptimization with pageSvc.AssetAttributes()
-* 2022-06 v02.02.00
-    * Replaced all base classe with their 2sxc 14 equivalents
-    * Removed all GetService<> and started to use the new ServiceKit14
-* 2023-03 v03.00.00
-    * Added Registration Formular with App Settings
-    * Started to use the new Hybrid.Api15
+  * Updated to v12 best-practices
+  * Removed all jQuery dependencies
+  * Hybrid - now works in Dnn and Oqtane
+  * Enabled data-optimizations
+* 2022-04
+  * Moved access of Services to ToSic.Sxc.Services
+  * Replaced data-enableoptimization with pageSvc.AssetAttributes()
+* v.02.02.00 2022-06
+  * Replaced all base classe with their 2sxc 14 equivalents
+  * Removed all GetService<> and started to use the new ServiceKit14
+* v03.00.00 2023-03
+  * Added Registration Formular with App Settings
+  * Started to use the new Hybrid.Api15
+* v03.04.00 2023-05
+  * Replaced turnOn Tag with `Kit.Page.TurnOn`
+  * Enhanced Kit.Image with `imgAltFallback`
+  * Replace Edit.TagToolbar(Content) Tag with `@Kit.Toolbar.Default(Content)`

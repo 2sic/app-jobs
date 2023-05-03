@@ -7,7 +7,7 @@
   var domAttribute = "app-jobs2-" + CmsContext.Module.Id;
 }
 
-@if(!App.Settings.EnableRegistration) {
+@if (!App.Settings.EnableRegistration) {
 	<div class="alert alert-danger" role="alert">
     <span class="sr-only">Error:</span>
     @Html.Raw(Resources.MessageRegistrationDisabled.Replace("<p>", "").Replace("</p>", ""))
@@ -31,7 +31,7 @@
 }
 
 <div class="app-jobs2 app-jobs2-form" 
-  @Edit.TagToolbar(job) 
+  @Kit.Toolbar.Default(job)
   @domAttribute
   data-webservice="app/auto/api/Form/ProcessForm"
 >
@@ -72,7 +72,7 @@
 
 
 	@* Privacy/Terms Checkbox *@
-	@if(Kit.Css.Is("bs3")) {
+	@if (Kit.Css.Is("bs3")) {
 	<div class="form-group">
 		<div class="checkbox">
 			<label>

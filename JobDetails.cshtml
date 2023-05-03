@@ -18,7 +18,7 @@
 
     Kit.Page.SetTitle(job.Name, "Details");
     
-    if(App.Settings.GoogleJobsApi) {
+    if (App.Settings.GoogleJobsApi) {
         #region Build JSON-LD
 
         var jsonDescription = Tag.Strong(job.Description) + "<br/><br/>" + job.Intro + "<br/><br/>" +
@@ -63,7 +63,7 @@
     }
 }
 
-<div class="app-jobs2-details" @Edit.TagToolbar(Content)>
+<div class="app-jobs2-details"  @Kit.Toolbar.Default(Content)>
     <div class="row mb-3 mb-lg-5">
         <div class="col-md-7 order-md-first">
             <h1 class="display-2">
@@ -74,7 +74,7 @@
         </div>
         <div class="col-md-4 order-md-last offset-lg-1">
             @if (Text.Has(job.Image)) {
-                @Kit.Image.Picture(job.Image, settings: "Content", factor: "1/2", imgClass: "rounded")
+                @Kit.Image.Picture(job.Image, settings: "Content", factor: "1/2", imgClass: "rounded", imgAltFallback : job.Name) 
             }
         </div>
     </div>
@@ -115,7 +115,7 @@
     </div>
 
     <a href="@App.Settings.MainPage" class="btn btn-outline-secondary">@App.Resources.BtnBack</a>
-    @if(App.Settings.EnableRegistration) {
+    @if (App.Settings.EnableRegistration) {
         <a href="@App.Settings.RegistrationPage/jobId/@job.EntityId" class="btn btn-primary">@App.Resources.BtnRegistration</a>
     }
 </div>
