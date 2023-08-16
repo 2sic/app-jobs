@@ -12,7 +12,7 @@ using System.IO;
 using System.Linq;
 
 [AllowAnonymous]	// define that all commands can be accessed without a login
-public class FormController : Custom.Hybrid.Api15
+public class FormController : Custom.Hybrid.ApiTyped
 {
   [HttpPost]
   public void ProcessForm([FromBody]Dictionary<string,object> contactFormRequest)
@@ -21,15 +21,15 @@ public class FormController : Custom.Hybrid.Api15
     // Pre-work: help the dictionary with the values uses case-insensitive key AccessLevel
     contactFormRequest = new Dictionary<string, object>(contactFormRequest, StringComparer.OrdinalIgnoreCase);
 
-    // 0. Pre-Check - validate recaptcha if enabled in the Content object (the form configuration)
-    // if (Content.Recaptcha ?? false) {
+    // 0. Pre-Check - validate recaptcha if enabled in the current object (the form configuration)
+    // var formConfig = = MyItem;
+    // if (formConfig.Bool("Recaptcha")) {
     //   Log.Add("checking Recaptcha");
-    //   CreateInstance("Parts/Recaptcha.cs").Validate(contactFormRequest["Recaptcha"] as string);
+    //   GetCode("Parts/Recaptcha.cs").Validate(contactFormRequest["Recaptcha"] as string);
     // }
 
     // 0.1. after saving, remove recaptcha fields from the data-package, because we don't want them in the e-mails
     RemoveKeys(contactFormRequest, new string[] { "g-recaptcha-response", "useRecaptcha",  "Recaptcha", "submit" });
-
 
 
 
@@ -44,12 +44,12 @@ public class FormController : Custom.Hybrid.Api15
       contactFormRequest["SenderIP"] = System.Web.HttpContext.Current.Request.UserHostAddress;
     #endif
     // Add the ModuleId to assign each sent form to a specific module
-    contactFormRequest["ModuleId"] = CmsContext.Module.Id;
+    contactFormRequest["ModuleId"] = MyContext.Module.Id;
     // add raw-data, in case the content-type has a "RawData" field
     contactFormRequest["RawData"] = CreateRawDataEntry(contactFormRequest);
-    // add Title (if non given), in case the Content-Type would benefit of an automatic title
-    var addTitle = !contactFormRequest.ContainsKey("Title");
-    if (addTitle) contactFormRequest["Title"] = "Form " + DateTime.Now.ToString("s");
+    // add Title (if non given), in case the content-type would benefit of an automatic title
+    if (!contactFormRequest.ContainsKey("Title"))
+      contactFormRequest["Title"] = "Form " + DateTime.Now.ToString("s");
 
     // Automatically full-save each request into a system-protocol content-type
     // This helps to debug or find submissions in case something wasn't configured right
@@ -67,10 +67,10 @@ public class FormController : Custom.Hybrid.Api15
     // Save files to Adam
     if (contactFormRequest.ContainsKey("Files")) {
       Log.Add("Found files, will save");
-      foreach (var file in (AsDynamic(contactFormRequest["Files"])))
+      foreach (var file in AsTypedList(contactFormRequest["Files"]))
       {
-        var data = System.Convert.FromBase64String((file["Encoded"]).Split(',')[1]);
-        files.Add(SaveInAdam(stream: new MemoryStream(data), fileName: file["Name"], contentType: "Registrations", guid: guid, field: file["Field"]));
+        var data = System.Convert.FromBase64String(file.String("Encoded").Split(',')[1]);
+        files.Add(SaveInAdam(stream: new MemoryStream(data), fileName: file.String("Name"), contentType: "Registrations", guid: guid, field: file.String("Field")));
       }
 
       // Don't keep Files array in ContactFormRequest
@@ -83,13 +83,13 @@ public class FormController : Custom.Hybrid.Api15
     RemoveKeys(contactFormRequest, new string[] { "ModuleId",  "SenderIP", "Timestamp", "RawData", "Title", "EntityGuid", "GPDR", "Job" });
 
     // sending Mails
-    var sendMail = CreateInstance("Parts/SendMail.cs");
+    var sendMail = GetCode("Parts/SendMail.cs");
     sendMail.sendMails(contactFormRequest, files);        
 
     wrapLog("ok");
   }
 
-  private dynamic CreateRawDataEntry(Dictionary<string,object> formRequest)
+  private object CreateRawDataEntry(Dictionary<string,object> formRequest)
   {
     var data = new Dictionary<string, object>(formRequest, StringComparer.OrdinalIgnoreCase);
     data.Remove("Files");

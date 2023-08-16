@@ -6,9 +6,9 @@
 
 | Aspect              | Status | Comments or Version |
 | ------------------- | :----: | ------------------- |
-| 2sxc                | ✅    | requires 2sxc v16.00
-| Dnn                 | ✅    | For v7, v8 and v9
-| Oqtane 2            | ✅    | Requires v3.01+
+| 2sxc                | ✅    | requires 2sxc v16.02
+| Dnn                 | ✅    | For v9.6.1+
+| Oqtane 2            | ✅    | Requires v3.04+
 | No jQuery           | ✅    | 
 | Live Demo           | ➖    |
 | Install Checklist   | ✅    | See [Installation] on [azing.org](https://azing.org/2sxc)
@@ -60,3 +60,6 @@ The Source Code is all here - so you can easily customize to your hearts desire!
   * Replaced turnOn Tag with `Kit.Page.TurnOn`
   * Enhanced Kit.Image with `imgAltFallback`
   * Replace Edit.TagToolbar(Content) Tag with `@Kit.Toolbar.Default(Content)`
+* v03.05.00 2023-07
+  * 2sxc 16.02 coding conventions
+  * everything typed

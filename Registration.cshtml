@@ -1,18 +1,18 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
 
 @{
-  var fieldBuilder = CreateInstance("shared/FieldBuilder.cs");
-  var job = AsList(Data["Job"]).FirstOrDefault();
-  var domAttribute = "app-jobs2-" + CmsContext.Module.Id;
+  var fieldBuilder = GetCode("shared/FieldBuilder.cs");
+  var job = AsItems(MyData["Job"]).FirstOrDefault();
+  var domAttribute = "app-jobs2-" + MyContext.Module.Id;
 }
 
-@if (!App.Settings.EnableRegistration) {
+@if (!App.Settings.Bool("EnableRegistration")) {
 	<div class="alert alert-danger" role="alert">
     <span class="sr-only">Error:</span>
-    @Html.Raw(Resources.MessageRegistrationDisabled.Replace("<p>", "").Replace("</p>", ""))
+    @Html.Raw(App.Resources.String("MessageRegistrationDisabled", scrubHtml: "p"))
   </div>
-  <a href="@App.Settings.MainPage" class="btn btn-outline-primary">@Html.Raw(Resources.BtnBack)</a>
+  <a href="@App.Settings.Url("MainPage")" class="btn btn-outline-primary">@Html.Raw(App.Resources.String("BtnBack"))</a>
 	
 	Kit.Page.SetHttpStatus(404);
   return;
@@ -22,9 +22,9 @@
 @if (job == null) {
   <div class="alert alert-danger" role="alert">
     <span class="sr-only">Error:</span>
-    @Resources.LabelNoResults
+    @App.Resources.String("LabelNoResults")
   </div>
-  <a href="@App.Settings.MainPage" class="btn btn-outline-primary">@Html.Raw(Resources.BtnBack)</a>
+  <a href="@App.Settings.Url("MainPage")" class="btn btn-outline-primary">@Html.Raw(App.Resources.String("BtnBack"))</a>
 
   Kit.Page.SetHttpStatus(404);
   return;
@@ -35,27 +35,17 @@
   @domAttribute
   data-webservice="app/auto/api/Form/ProcessForm"
 >
-	<input type="hidden" id="Job" name="Job" value="@job.EntityGuid">
+	<input type="hidden" id="Job" name="Job" value="@job.Guid">
 
-	@fieldBuilder.Text("JobName", true, true, job.Name)
+	@fieldBuilder.Text("JobName", true, true, job.String("Name"))
 
-	<div class="row mb-3">
-		@fieldBuilder.Label(Resources.LabelSalutation, "Salutation", true)
-		<div class="col-sm-9 radio-group">
-			<div class="radio">
-				<label>
-					<input required data-pristine-required-message name="Salutation" type="radio" value="@Resources.LabelMrs">
-					@Resources.LabelMrs
-				</label>
-			</div>
-			<div class="radio">
-				<label>
-					<input required data-pristine-required-message name="Salutation" type="radio" value="@Resources.LabelMr">
-					@Resources.LabelMr
-				</label>
-			</div>
-		</div>
-	</div> 
+	@* Salutation *@
+    @fieldBuilder.Radio("Salutation", true, 
+      	new string[] {
+        App.Resources.String("LabelMr"),
+		App.Resources.String("LabelMrs")
+      }
+    )
 
 	@fieldBuilder.Text("FirstName", true)
 	@fieldBuilder.Text("LastName", true)
@@ -66,64 +56,46 @@
 	@fieldBuilder.Text("ZIPCity", true)
 
 	@* Country Select *@
-	@fieldBuilder.DropDown("Country", true, Resources.CountrySelection.Split('\n'))    
+	@fieldBuilder.DropDown("Country", true, App.Resources.String("CountrySelection").Split('\n'))    
 
 	@fieldBuilder.File("ApplicationFile", true, ".pdf", "ApplicationFile")
 
-
-	@* Privacy/Terms Checkbox *@
-	@if (Kit.Css.Is("bs3")) {
-	<div class="form-group">
-		<div class="checkbox">
-			<label>
-					<input type="checkbox" value="" name="GPDR" id="GPDR" required data-pristine-required-message="@Resources.LabelRequired"> @Html.Raw(Resources.GpdrText.Replace("<p>", "").Replace("</p>", ""))
-			</label>
-		</div>
-	</div>
-	} else {
-	<div class="form-group form-check mb-3">
-		<input class="form-check-input" type="checkbox" value="" name="GPDR" id="GPDR" required data-pristine-required-message="@Resources.LabelRequired">
-		<label class="form-check-label" for="GPDR">
-				@Html.Raw(Resources.GpdrText.Replace("<p>", "").Replace("</p>", ""))
-		</label>
-	</div>
-	}
-
+	@* Terms *@
+  @fieldBuilder.Checkbox("Gpdr", true)
 
 	@* Submit Button *@
 	<div class="mb-3 row">
 		<div class="col-md-9 offset-sm-3">
-			<a href="@App.Settings.DetailsPage/id/@job.EntityId" class='btn @(Kit.Css.Is("bs3") ? "btn-default" : "btn-outline-primary")'>@Html.Raw(Resources.BtnBack)</a>
-			<button type="button" app-jobs2-send class="btn btn-primary">@Html.Raw(Resources.BtnRegistration)</button>
+			<a href="@App.Settings.Url("DetailsPage")/id/@job.Id" class='btn @(Kit.Css.Is("bs3") ? "btn-default" : "btn-outline-primary")'>@Html.Raw(App.Resources.String("BtnBack"))</a>
+			<button type="button" app-jobs2-send class="btn btn-primary">@Html.Raw(App.Resources.String("BtnRegistration"))</button>
 		</div>
 	</div>  
 
-
-	@AddHiddenMessage(Resources.MessageSending, "warning", "msgSending")
-	@AddHiddenMessage(Resources.ValidationRequired, "danger", "msgIncomplete")
-	@AddHiddenMessage(Resources.RegistrationError, "danger", "msgError")
+	@AddHiddenMessage(App.Resources.String("MessageSending"), "warning", "msgSending")
+	@AddHiddenMessage(App.Resources.String("ValidationRequired"), "danger", "msgIncomplete")
+	@AddHiddenMessage(App.Resources.String("RegistrationError"), "danger", "msgError")
 	<div id="msgOk" class="alert alert-success app-jobs2-message" role="alert">
-		<strong>@Html.Raw(Resources.SuccessThanks)</strong>
-		@Html.Raw(Resources.SuccessMessage)
+		<strong>@Html.Raw(App.Resources.String("SuccessThanks"))</strong>
+		@Html.Raw(App.Resources.String("SuccessMessage"))
 	</div>
 
 	@* if is required, because all app-job2-config-warning are shown after submit *@
-	@if (!Text.Has(Settings.OwnerMail) || !Text.Has(Settings.MailFrom)) {
+	@if (!Text.Has(App.Settings.String("OwnerMail")) || !Text.Has(App.Settings.String("MailFrom"))) {
 
 		<div class="alert alert-warning" id="" role="alert" app-job2-config-warning>
-			@Html.Raw(Resources.MessageDefaultMailSettings.Replace("<p>", "").Replace("</p>", ""))
+			@Html.Raw(App.Resources.String("MessageDefaultMailSettings", scrubHtml: "p"))
 		</div>		
 	}      
 </div>
 
 @functions {
-  dynamic AddHiddenMessage(string message, string type = "warning", string id = "", string attribute = "") {
+  object AddHiddenMessage(string message, string type = "warning", string id = "", string attribute = "") {
     var classes = "alert alert-" + type + " app-jobs2-message";
-		var rawMessage = message.Replace("<p>", "").Replace("</p>", "");
+		var rawMessage = Kit.Scrub.Only(message, "p");
     var messageDiv = Tag.Div(rawMessage).Class(classes).Id(id).Attr("role", "alert");
     if (attribute != "") { messageDiv.Attr(attribute, ""); }
     return messageDiv;
   }
 }
 
-@Html.Partial("shared/Assets.cshtml", new { DomAttribute = domAttribute })
+@Html.Partial("shared/Assets.cshtml", new { domAttribute })

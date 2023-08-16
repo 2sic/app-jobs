@@ -1,5 +1,6 @@
 import { showAlert, showConfigWarnings } from './lib-2sxc-alerts';
 import { disableInputs, enableInputs, getFormValues, sendForm, validateForm } from './lib-2sxc-forms';
+import { PristineOptions } from './lib-2sxc-pristine-options';
 // import { getRecaptchaToken, requiresRecaptcha } from './lib-2sxc-recaptcha';
 
 // so it can be called from the HTML when content re-initializes dynamically
@@ -9,7 +10,7 @@ winAny.appJobs2.init ??= init
 
 const debug = false
 
-function init({ domAttribute, currentCategory }: { domAttribute: string, currentCategory: string }) {
+function init({ domAttribute, currentCategory, validationOptions }: { domAttribute: string, currentCategory: string, validationOptions: PristineOptions }) {
   const appWrapper = document.querySelector(`[${domAttribute}]`)
   const categoryButtons = appWrapper.querySelectorAll(`[app-jobs2-category-button]`)
   const noReloadRequired = currentCategory == ""
@@ -38,7 +39,7 @@ function init({ domAttribute, currentCategory }: { domAttribute: string, current
 
     const eventBtn = event.currentTarget as HTMLElement;
     
-    var valid = validateForm(eventsWrapper)
+    var valid = validateForm(eventsWrapper, validationOptions)
     if (!valid) {
       showAlert(eventsWrapper, 'msgIncomplete')
       return

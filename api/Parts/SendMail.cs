@@ -6,16 +6,16 @@ using System.Net.Mail;
 using System.Text;
 using ToSic.Razor.Blade;
 
-public class SendMail : Custom.Hybrid.Code14
+public class SendMail : Custom.Hybrid.CodeTyped
 {
-  public void sendMails(Dictionary<string,object> contactFormRequest, dynamic files) {
+  public void sendMails(Dictionary<string,object> contactFormRequest, List<ToSic.Sxc.Adam.IFile> files) {
     var settings = new {
-      MailFrom = Settings.MailFrom,
-      OwnerMail = Settings.OwnerMail,
+      MailFrom = App.Settings.String("MailFrom"),
+      OwnerMail = App.Settings.String("OwnerMail"),
       OwnerMailCC = "",
-      OwnerMailTemplateFile = Settings.OwnerMailTemplateFile,
+      OwnerMailTemplateFile = App.Settings.String("OwnerMailTemplateFile"),
       CustomerMailCC = "",
-      CustomerMailTemplateFile = Settings.CustomerMailTemplateFile
+      CustomerMailTemplateFile = App.Settings.String("CustomerMailTemplateFile")
     };
 
     var customerMail = contactFormRequest["Mail"].ToString();
@@ -45,7 +45,7 @@ public class SendMail : Custom.Hybrid.Code14
     var wrapLog = Log.Call("template:" + emailTemplateFilename + ", from:" + from + ", to:" + to + ", cc:" + cc + ", reply:" + replyTo);
 
     Log.Add("Get MailEngine");
-    var mailEngine = CreateInstance("../../email-templates/" + emailTemplateFilename);
+    var mailEngine = GetCode("../../email-templates/" + emailTemplateFilename);
     var mailBody = mailEngine.Message(valuesWithMailLabels).ToString();
     var subject = mailEngine.Subject();
 
