@@ -1,12 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade
 @{
-
-    var jobDetailsContent = MyItem;
-
     var domAttribute = "app-jobs2-" + MyContext.Module.Id;
-    // Get current job to show from the View-Query + some Helpers
 
+    // Get current job to show from the View-Query + some Helpers
     var job = AsItems(MyData).FirstOrDefault();
 
     @* Preflight: check if job found, else show notification and stop processing *@
@@ -66,7 +63,7 @@
         #endregion
     }
 }
-<div class="app-jobs2-details"  @Kit.Toolbar.Default(jobDetailsContent)>
+<div class="app-jobs2-details"  @Kit.Toolbar.Default(job)>
     <div class="row mb-3 mb-lg-5">
         <div class="col-md-7 order-md-first">
             <h1 class="display-2">
@@ -77,7 +74,7 @@
         </div>
         <div class="col-md-4 order-md-last offset-lg-1">
             @if (Text.Has(job.String("Image"))) {
-                @Kit.Image.Picture(job.Url("Image"), settings: "Content", factor: "1/2", imgClass: "rounded", imgAltFallback : job.String("Name")) 
+                @job.Picture("Image", settings: "Content", factor: "1/2", imgClass: "rounded", imgAltFallback : job.String("Name"))
             }
         </div>
     </div>
