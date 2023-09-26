@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade
 @{
-    var domAttribute = "app-jobs2-" + MyContext.Module.Id;
+    var domAttribute = "app-jobs2-" + UniqueKey;
 
     // Get current job to show from the View-Query + some Helpers
     var job = AsItems(MyData).FirstOrDefault();

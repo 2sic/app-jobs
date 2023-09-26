@@ -7,7 +7,7 @@
 
   var categories = AsItems(MyData["Categories"]);
   var jobs = AsItems(MyData["Jobs"]);
-  var domAttribute = "app-jobs2-" + MyContext.Module.Id;
+  var domAttribute = "app-jobs2-" + UniqueKey;
 
   var contentToolbar = Kit.Toolbar.Default().New("Job", tweak: b => b.Ui("title=New Job"));
 

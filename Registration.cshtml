@@ -4,7 +4,7 @@
 @{
   var fieldBuilder = GetCode("shared/FieldBuilder.cs");
   var job = AsItems(MyData["Job"]).FirstOrDefault();
-  var domAttribute = "app-jobs2-" + MyContext.Module.Id;
+  var domAttribute = "app-jobs2-" + UniqueKey;
 }
 
 @if (!App.Settings.Bool("EnableRegistration")) {
