@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.07.00" ExportDate="2023-10-02T11:10:59.8958847+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.07.00" ExportDate="2023-10-02T11:37:48.0861307+02:00">
   <Header>
     <App Guid="c8de709d-ea82-4718-8939-ad987538fd44" />
     <Language Default="en-us" />
@@ -3368,7 +3368,7 @@
       <Value Key="Description" Value="Websites und Web-Technologien sind voll dein Ding? Du liebst es Herausforderungen zu meistern." Type="String">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
-      <Value Key="Image" Value="file:6322" Type="Hyperlink">
+      <Value Key="Image" Value="file:6487" Type="Hyperlink">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="Sie wollen Grosses bewegen, gar Berge versetzen? Wachsen, lernen, besser werden und Ihr Können tagtäglich unter Beweis stellen? Dann sind wir Ihr nächstes Ziel." Type="String">
@@ -3380,19 +3380,19 @@
       <Value Key="Name" Value="Frontend Developer" Type="String">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
-      <Value Key="OurOffer" Value="&lt;ul&gt;&#xA;&lt;li&gt;Flexible Arbeitszeitgestaltung&lt;/li&gt;&#xA;&lt;li&gt;Attraktive Weiterbildungs- und Entwicklungsm&amp;ouml;glichkeiten&lt;/li&gt;&#xA;&lt;li&gt;Interessante und abwechslungsreiche T&amp;auml;tigkeiten/Projekte&lt;/li&gt;&#xA;&lt;li&gt;Eingespieltes und dynamisches Team&lt;/li&gt;&#xA;&lt;li&gt;Offene Unternehmenskultur&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
+      <Value Key="OurOffer" Value="&lt;ul&gt;&#xA;&lt;li&gt;Flexible Arbeitszeitgestaltung&lt;/li&gt;&#xA;&lt;li&gt;Attraktive Weiterbildungs- und Entwicklungsmöglichkeiten&lt;/li&gt;&#xA;&lt;li&gt;Interessante und abwechslungsreiche Tätigkeiten/Projekte&lt;/li&gt;&#xA;&lt;li&gt;Eingespieltes und dynamisches Team&lt;/li&gt;&#xA;&lt;li&gt;Offene Unternehmenskultur&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
-      <Value Key="Outro" Value="&lt;h2&gt;Auf deine aussagekr&amp;auml;ftige Bewerbung freuen wir uns.&lt;/h2&gt;&#xA;&lt;p&gt;F&amp;uuml;r Fragen und Ausk&amp;uuml;nfte steht dir unsere HR-Verantwortliche Person gerne zur Verf&amp;uuml;gung. Oder falls du jemanden kennst der Perfekt auf die Stellenausschreibung passt Share doch den Link mit der Person.&lt;/p&gt;" Type="String">
+      <Value Key="Outro" Value="&lt;h2&gt;Auf deine aussagekräftige Bewerbung freuen wir uns.&lt;/h2&gt;&#xA;&lt;p&gt;Für Fragen und Auskünfte steht dir unsere HR-Verantwortliche Person gerne zur Verfügung. Oder falls du jemanden kennst der Perfekt auf die Stellenausschreibung passt Share doch den Link mit der Person.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
       <Value Key="Priority" Value="1" Type="Number">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
-      <Value Key="Qualifications" Value="&lt;ul&gt;&#xA;&lt;li&gt;Du hast eine abgeschlossene h&amp;ouml;here Ausbildung im technischen Bereich (HF, FH, ETH), z.B. Informatik mit Profilierung iCompetence&lt;/li&gt;&#xA;&lt;li&gt;Du hast eine hohe Affinit&amp;auml;t f&amp;uuml;r benutzerfreundliche und effiziente UIs sowie Flair f&amp;uuml;r &amp;Auml;sthetik&lt;/li&gt;&#xA;&lt;li&gt;Du hast Erfahrung mit Business Software als Frontend Developer und UX Designer&lt;/li&gt;&#xA;&lt;li&gt;Du hast gute Kenntnisse und Erfahrung in der Webentwicklung (idealerweise Typescript, React, HTML/CSS)&lt;/li&gt;&#xA;&lt;li&gt;Du hast ein technisches Verst&amp;auml;ndnis von Software-Architektur und moderner Technologien&lt;/li&gt;&#xA;&lt;li&gt;Du bringst die F&amp;auml;higkeit, UIs kompatibel mit der Dom&amp;auml;ne zu gestalten (DDD)&lt;/li&gt;&#xA;&lt;li&gt;Du hast sehr gute Deutsch- und gute Englischkenntnisse&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
+      <Value Key="Qualifications" Value="&lt;ul&gt;&#xA;&lt;li&gt;Du hast eine abgeschlossene höhere Ausbildung im technischen Bereich (HF, FH, ETH), z.B. Informatik mit Profilierung iCompetence&lt;/li&gt;&#xA;&lt;li&gt;Du hast eine hohe Affinität für benutzerfreundliche und effiziente UIs sowie Flair für Ästhetik&lt;/li&gt;&#xA;&lt;li&gt;Du hast Erfahrung mit Business Software als Frontend Developer und UX Designer&lt;/li&gt;&#xA;&lt;li&gt;Du hast gute Kenntnisse und Erfahrung in der Webentwicklung (idealerweise Typescript, React, HTML/CSS)&lt;/li&gt;&#xA;&lt;li&gt;Du hast ein technisches Verständnis von Software-Architektur und moderner Technologien&lt;/li&gt;&#xA;&lt;li&gt;Du bringst die Fähigkeit, UIs kompatibel mit der Domäne zu gestalten (DDD)&lt;/li&gt;&#xA;&lt;li&gt;Du hast sehr gute Deutsch- und gute Englischkenntnisse&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
-      <Value Key="Tasks" Value="&lt;ul&gt;&#xA;&lt;li&gt;Das Ausarbeiten von Wireframes/Mockups und Workflows als Basis f&amp;uuml;r ergonomische Software sind in deiner Verantwortung&lt;/li&gt;&#xA;&lt;li&gt;Arbeit mit UI Design, Icon Design, Look &amp;amp; Feel der Applikationen&lt;/li&gt;&#xA;&lt;li&gt;Du entwickelst UI Komponenten (Projekt &amp;uuml;bergreifend) in Zusammenarbeit mit weiteren Entwickler/innen&lt;/li&gt;&#xA;&lt;li&gt;Du bist die Ansprechperson bei UI/ UX Fragen f&amp;uuml;r das Entwicklungsteam und die POs&lt;/li&gt;&#xA;&lt;li&gt;Du stellst ein einheitliches Erscheinungsbild und einer effizienten Bedienbarkeit der Business Webapplikationen sicher&lt;/li&gt;&#xA;&lt;li&gt;Du konzipierst Software zur Unterst&amp;uuml;tzung und Modernisierung der operativen Prozesse unter Ber&amp;uuml;cksichtigung der technischen M&amp;ouml;glichkeiten (Technical Product Owner)&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
+      <Value Key="Tasks" Value="&lt;ul&gt;&#xA;&lt;li&gt;Das Ausarbeiten von Wireframes/Mockups und Workflows als Basis für ergonomische Software sind in deiner Verantwortung&lt;/li&gt;&#xA;&lt;li&gt;Arbeit mit UI Design, Icon Design, Look &amp;amp; Feel der Applikationen&lt;/li&gt;&#xA;&lt;li&gt;Du entwickelst UI Komponenten (Projekt übergreifend) in Zusammenarbeit mit weiteren Entwickler/innen&lt;/li&gt;&#xA;&lt;li&gt;Du bist die Ansprechperson bei UI/ UX Fragen für das Entwicklungsteam und die POs&lt;/li&gt;&#xA;&lt;li&gt;Du stellst ein einheitliches Erscheinungsbild und einer effizienten Bedienbarkeit der Business Webapplikationen sicher&lt;/li&gt;&#xA;&lt;li&gt;Du konzipierst Software zur Unterstützung und Modernisierung der operativen Prozesse unter Berücksichtigung der technischen Möglichkeiten (Technical Product Owner)&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
     </Entity>
@@ -3627,7 +3627,7 @@
       <Value Key="Description" Value="Eine Stelle als System Engineer. Lorem Ipsum Dolor si amet." Type="String">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
-      <Value Key="Image" Value="file:1445" Type="Hyperlink">
+      <Value Key="Image" Value="file:6486" Type="Hyperlink">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="Lorem ipsum dolor sit amet, consetetur sadipscing elitr" Type="String">
@@ -3640,6 +3640,9 @@
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
       <Value Key="OurOffer" Value="&lt;ul&gt;&#xA;&lt;li&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr,&lt;/li&gt;&#xA;&lt;li&gt;Sed diam nonumy eirmod tempor invidunt ut&lt;/li&gt;&#xA;&lt;li&gt;Labore et dolore magna&lt;/li&gt;&#xA;&lt;li&gt;Aliquyam erat, sed diam voluptua&lt;/li&gt;&#xA;&lt;li&gt;At vero eos et accusam et justo duo dolores et ea rebum.&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="Outro" Value="" Type="String">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
       <Value Key="Priority" Value="1" Type="Number">
@@ -4147,63 +4150,14 @@
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="529ba3a2-d7d4-4f40-a81b-ff819de03a9e" AttributeSetName="IsDefaultDecorator" EntityGUID="f7f9f13a-0a4d-4b1b-ae68-dee6344a15f9" Json="True" KeyGuid="5f2d8846-bfdb-4ddc-b84c-70b9c55ec196" />
   </Entities>
   <PortalFiles>
-    <File Id="6322" RelativePath="adam\Jobs2\5vaKiRhZXU2uzJldgngmlQ\Image\nubelson-fernandes-UcYBL5V0xWQ-unsplash.jpg" />
-    <File Id="1445" RelativePath="adam\Stellen\Es3nKD2JdkyqMxZRDwlBAA\Image\david-vig-573668-unsplash.jpg" />
-    <File Id="6362" RelativePath="adam\Jobs3\_2mkEENFUU2m4nrjVaVeAg\ApplicationFile\Hallo - Copy - Copy - Copy.pdf" />
-    <File Id="6365" RelativePath="adam\Jobs3\3RVdODmwB0q8H256IOXA_Q\ApplicationFile\Hallo - Copy - Copy - Copy.pdf" />
-    <File Id="6364" RelativePath="adam\Jobs3\4YTR-zk7s0uub-U-fexlpw\ApplicationFile\Hallo - Copy - Copy - Copy.pdf" />
-    <File Id="6366" RelativePath="adam\Jobs3\5tx2XT0b50ad60oE1sC2VQ\ApplicationFile\Hallo - Copy - Copy - Copy.pdf" />
-    <File Id="6369" RelativePath="adam\Jobs3\eddVWCT7KUmNT4CWYrjOrQ\ApplicationFile\Hallo - Copy - Copy - Copy.pdf" />
-    <File Id="6338" RelativePath="adam\Jobs3\ER7Tmaam6EWwWU8qWbXyyw\ApplicationFile\Hallo.pdf" />
-    <File Id="6376" RelativePath="adam\Jobs3\eZfi6XduXEazcHBFlf-oiQ\ApplicationFile\Hallo.pdf" />
-    <File Id="6363" RelativePath="adam\Jobs3\hi4tqmwUmUydoHz1SpFYqw\ApplicationFile\Hallo - Copy - Copy - Copy.pdf" />
-    <File Id="6371" RelativePath="adam\Jobs3\iFkpGtgAEESXoCwRGJO50w\ApplicationFile\Hacker-Attacken auf die Schweiz.pdf" />
-    <File Id="6367" RelativePath="adam\Jobs3\j6jXkecwsEu41BREWY_Yqg\ApplicationFile\Hallo - Copy - Copy - Copy.pdf" />
-    <File Id="6373" RelativePath="adam\Jobs3\KaPI8JXTfUWCDRzAWUEnEQ\ApplicationFile\Hallo.pdf" />
-    <File Id="6368" RelativePath="adam\Jobs3\-nZyBRJv5EOLjoxT3034JQ\ApplicationFile\Hallo - Copy - Copy - Copy.pdf" />
-    <File Id="6375" RelativePath="adam\Jobs3\PTaU4mS6RkygOAGjgKUY_w\ApplicationFile\Hallo.pdf" />
-    <File Id="6377" RelativePath="adam\Jobs3\qvuTYYZK5kqP2MQP9hnEsg\ApplicationFile\Hallo.pdf" />
-    <File Id="6374" RelativePath="adam\Jobs3\Wj2_cS-7nU6v5LmWdpIDFg\ApplicationFile\Hallo.pdf" />
-    <File Id="6361" RelativePath="adam\Jobs3\XBy4PL8xw0ii1qtOBNv4jA\ApplicationFile\Hallo - Copy - Copy - Copy.pdf" />
-    <File Id="6370" RelativePath="adam\Jobs3\yKMnqOr3UEeD7AQxYDVU-w\ApplicationFile\Hallo - Copy - Copy - Copy.pdf" />
+    <File Id="6487" RelativePath="adam\Jobs3\5vaKiRhZXU2uzJldgngmlQ\Image\nubelson-fernandes-UcYBL5V0xWQ-unsplash.jpg" />
+    <File Id="6486" RelativePath="adam\Jobs3\Es3nKD2JdkyqMxZRDwlBAA\Image\christina-wocintechchat-com-FVgECvTjlBQ-unsplash.jpg" />
   </PortalFiles>
   <PortalFolders>
-    <Folder Id="13900" RelativePath="adam/Jobs2/5vaKiRhZXU2uzJldgngmlQ/Image/" />
-    <Folder Id="2841" RelativePath="adam/Stellen/Es3nKD2JdkyqMxZRDwlBAA/Image/" />
-    <Folder Id="13964" RelativePath="adam/Jobs3/_2mkEENFUU2m4nrjVaVeAg/ApplicationFile/" />
-    <Folder Id="13970" RelativePath="adam/Jobs3/3RVdODmwB0q8H256IOXA_Q/ApplicationFile/" />
-    <Folder Id="13968" RelativePath="adam/Jobs3/4YTR-zk7s0uub-U-fexlpw/ApplicationFile/" />
-    <Folder Id="13972" RelativePath="adam/Jobs3/5tx2XT0b50ad60oE1sC2VQ/ApplicationFile/" />
-    <Folder Id="13978" RelativePath="adam/Jobs3/eddVWCT7KUmNT4CWYrjOrQ/ApplicationFile/" />
-    <Folder Id="13930" RelativePath="adam/Jobs3/ER7Tmaam6EWwWU8qWbXyyw/ApplicationFile/" />
-    <Folder Id="13992" RelativePath="adam/Jobs3/eZfi6XduXEazcHBFlf-oiQ/ApplicationFile/" />
-    <Folder Id="13966" RelativePath="adam/Jobs3/hi4tqmwUmUydoHz1SpFYqw/ApplicationFile/" />
-    <Folder Id="13982" RelativePath="adam/Jobs3/iFkpGtgAEESXoCwRGJO50w/ApplicationFile/" />
-    <Folder Id="13974" RelativePath="adam/Jobs3/j6jXkecwsEu41BREWY_Yqg/ApplicationFile/" />
-    <Folder Id="13986" RelativePath="adam/Jobs3/KaPI8JXTfUWCDRzAWUEnEQ/ApplicationFile/" />
-    <Folder Id="13976" RelativePath="adam/Jobs3/-nZyBRJv5EOLjoxT3034JQ/ApplicationFile/" />
-    <Folder Id="13990" RelativePath="adam/Jobs3/PTaU4mS6RkygOAGjgKUY_w/ApplicationFile/" />
-    <Folder Id="13994" RelativePath="adam/Jobs3/qvuTYYZK5kqP2MQP9hnEsg/ApplicationFile/" />
-    <Folder Id="13988" RelativePath="adam/Jobs3/Wj2_cS-7nU6v5LmWdpIDFg/ApplicationFile/" />
-    <Folder Id="13962" RelativePath="adam/Jobs3/XBy4PL8xw0ii1qtOBNv4jA/ApplicationFile/" />
-    <Folder Id="13980" RelativePath="adam/Jobs3/yKMnqOr3UEeD7AQxYDVU-w/ApplicationFile/" />
+    <Folder Id="14229" RelativePath="adam/Jobs3/5vaKiRhZXU2uzJldgngmlQ/Image/" />
+    <Folder Id="14227" RelativePath="adam/Jobs3/Es3nKD2JdkyqMxZRDwlBAA/Image/" />
     <Folder Id="13918" RelativePath="adam/Jobs3/" />
-    <Folder Id="13963" RelativePath="adam/Jobs3/_2mkEENFUU2m4nrjVaVeAg/" />
-    <Folder Id="13969" RelativePath="adam/Jobs3/3RVdODmwB0q8H256IOXA_Q/" />
-    <Folder Id="13967" RelativePath="adam/Jobs3/4YTR-zk7s0uub-U-fexlpw/" />
-    <Folder Id="13971" RelativePath="adam/Jobs3/5tx2XT0b50ad60oE1sC2VQ/" />
-    <Folder Id="13977" RelativePath="adam/Jobs3/eddVWCT7KUmNT4CWYrjOrQ/" />
-    <Folder Id="13929" RelativePath="adam/Jobs3/ER7Tmaam6EWwWU8qWbXyyw/" />
-    <Folder Id="13991" RelativePath="adam/Jobs3/eZfi6XduXEazcHBFlf-oiQ/" />
-    <Folder Id="13965" RelativePath="adam/Jobs3/hi4tqmwUmUydoHz1SpFYqw/" />
-    <Folder Id="13981" RelativePath="adam/Jobs3/iFkpGtgAEESXoCwRGJO50w/" />
-    <Folder Id="13973" RelativePath="adam/Jobs3/j6jXkecwsEu41BREWY_Yqg/" />
-    <Folder Id="13985" RelativePath="adam/Jobs3/KaPI8JXTfUWCDRzAWUEnEQ/" />
-    <Folder Id="13975" RelativePath="adam/Jobs3/-nZyBRJv5EOLjoxT3034JQ/" />
-    <Folder Id="13989" RelativePath="adam/Jobs3/PTaU4mS6RkygOAGjgKUY_w/" />
-    <Folder Id="13993" RelativePath="adam/Jobs3/qvuTYYZK5kqP2MQP9hnEsg/" />
-    <Folder Id="13987" RelativePath="adam/Jobs3/Wj2_cS-7nU6v5LmWdpIDFg/" />
-    <Folder Id="13961" RelativePath="adam/Jobs3/XBy4PL8xw0ii1qtOBNv4jA/" />
-    <Folder Id="13979" RelativePath="adam/Jobs3/yKMnqOr3UEeD7AQxYDVU-w/" />
+    <Folder Id="14228" RelativePath="adam/Jobs3/5vaKiRhZXU2uzJldgngmlQ/" />
+    <Folder Id="14226" RelativePath="adam/Jobs3/Es3nKD2JdkyqMxZRDwlBAA/" />
   </PortalFolders>
 </SexyContent>
