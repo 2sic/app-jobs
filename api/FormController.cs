@@ -10,12 +10,18 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ToSic.Sxc.WebApi;
+
+// WIP
+using System.Text.Json;
+using System.Text.Json.Nodes;
 
 [AllowAnonymous]	// define that all commands can be accessed without a login
+[JsonFormatter]   // Use modern JSON formatter
 public class FormController : Custom.Hybrid.ApiTyped
 {
   [HttpPost]
-  public void ProcessForm([FromBody]Dictionary<string,object> contactFormRequest)
+  public void ProcessForm([FromBody] Dictionary<string, object> contactFormRequest)
   {
     var wrapLog = Log.Call(useTimer: true);
     // Pre-work: help the dictionary with the values uses case-insensitive key AccessLevel
@@ -29,7 +35,7 @@ public class FormController : Custom.Hybrid.ApiTyped
     // }
 
     // 0.1. after saving, remove recaptcha fields from the data-package, because we don't want them in the e-mails
-    RemoveKeys(contactFormRequest, new string[] { "g-recaptcha-response", "useRecaptcha",  "Recaptcha", "submit" });
+    RemoveKeys(contactFormRequest, new string[] { "g-recaptcha-response", "useRecaptcha", "Recaptcha", "submit" });
 
 
 
@@ -38,11 +44,11 @@ public class FormController : Custom.Hybrid.ApiTyped
     // in the request with the correct name, they will be added automatically
     contactFormRequest["Timestamp"] = DateTime.Now;
     // Add the SenderIP in case we need to track down abuse
-    #if NETCOREAPP
+#if NETCOREAPP
       contactFormRequest["SenderIP"] = Request.HttpContext.Connection.RemoteIpAddress?.ToString();
-    #else
-      contactFormRequest["SenderIP"] = System.Web.HttpContext.Current.Request.UserHostAddress;
-    #endif
+#else
+    contactFormRequest["SenderIP"] = System.Web.HttpContext.Current.Request.UserHostAddress;
+#endif
     // Add the ModuleId to assign each sent form to a specific module
     contactFormRequest["ModuleId"] = MyContext.Module.Id;
     // add raw-data, in case the content-type has a "RawData" field
@@ -65,31 +71,35 @@ public class FormController : Custom.Hybrid.ApiTyped
     var files = new List<ToSic.Sxc.Adam.IFile>();
 
     // Save files to Adam
-    if (contactFormRequest.ContainsKey("Files")) {
-      Log.Add("Found files, will save");
-      foreach (var file in AsTypedList(contactFormRequest["Files"]))
+    if (contactFormRequest.ContainsKey("Files"))
+    {
+      foreach (var fileObj in contactFormRequest["Files"] as IEnumerable<object>)
       {
-        var data = System.Convert.FromBase64String(file.String("Encoded").Split(',')[1]);
-        files.Add(SaveInAdam(stream: new MemoryStream(data), fileName: file.String("Name"), contentType: "Registrations", guid: guid, field: file.String("Field")));
-      }
+        var json = fileObj.ToString();
+        var uploaded = Kit.Json.To<FileUpload>(json);
 
+        var data = System.Convert.FromBase64String(uploaded.Encoded.Split(',')[1]);
+        files.Add(SaveInAdam(stream: new MemoryStream(data), fileName: uploaded.Name, contentType: "Registrations", guid: guid, field: uploaded.Field));
+      }
       // Don't keep Files array in ContactFormRequest
       RemoveKeys(contactFormRequest, new string[] { "Files" });
-    } else {
+    }
+    else
+    {
       Log.Add("No files found to save");
-    }    
+    }
 
     // remove App informations from data-package
-    RemoveKeys(contactFormRequest, new string[] { "ModuleId",  "SenderIP", "Timestamp", "RawData", "Title", "EntityGuid", "GPDR", "Job" });
+    RemoveKeys(contactFormRequest, new string[] { "ModuleId", "SenderIP", "Timestamp", "RawData", "Title", "EntityGuid", "GPDR", "Job" });
 
     // sending Mails
     var sendMail = GetCode("Parts/SendMail.cs");
-    sendMail.sendMails(contactFormRequest, files);        
+    sendMail.sendMails(contactFormRequest, files);
 
     wrapLog("ok");
   }
 
-  private object CreateRawDataEntry(Dictionary<string,object> formRequest)
+  private object CreateRawDataEntry(Dictionary<string, object> formRequest)
   {
     var data = new Dictionary<string, object>(formRequest, StringComparer.OrdinalIgnoreCase);
     data.Remove("Files");
@@ -97,10 +107,18 @@ public class FormController : Custom.Hybrid.ApiTyped
   }
 
   // helpers
-  private void RemoveKeys(Dictionary<string,object> contactFormRequest, string[] badKeys)
+  private void RemoveKeys(Dictionary<string, object> contactFormRequest, string[] badKeys)
   {
     foreach (var key in badKeys)
       if (contactFormRequest.ContainsKey(key))
         contactFormRequest.Remove(key);
   }
+}
+
+public class FileUpload
+{
+  public string Field { get; set; }
+  public string Name { get; set; }
+  public string Encoded { get; set; }
+
 }

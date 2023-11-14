@@ -63,3 +63,5 @@ The Source Code is all here - so you can easily customize to your hearts desire!
 * v03.05.00 2023-07
   * 2sxc 16.02 coding conventions
   * everything typed
+* v03.05.01 2023-11
+  * Bugfix Multiple File Upload (Conversion to type was wrong)

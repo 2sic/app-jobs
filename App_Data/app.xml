@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.07.00" ExportDate="2023-10-02T11:37:48.0861307+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.08.00" ExportDate="2023-11-14T10:50:41.6800888+01:00">
   <Header>
     <App Guid="c8de709d-ea82-4718-8939-ad987538fd44" />
     <Language Default="en-us" />
@@ -3025,6 +3025,9 @@
       <Value Key="AllowTokenTemplates" Value="True" Type="Boolean">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
+      <Value Key="DebugLog" Value="" Type="String">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
       <Value Key="Description" Value="" Type="String">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
@@ -3052,7 +3055,7 @@
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="03.05.00" Type="String">
+      <Value Key="Version" Value="03.05.01" Type="String">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
     </Entity>
@@ -3061,6 +3064,9 @@
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
       <Value Key="DetailsPage" Value="page:3004" Type="Hyperlink">
+        <Dimension DimensionID="188" ReadOnly="false" />
+      </Value>
+      <Value Key="DetailsPageShowWarning" Value="True" Type="Boolean">
         <Dimension DimensionID="188" ReadOnly="false" />
       </Value>
       <Value Key="EnableRegistration" Value="True" Type="Boolean">
@@ -4152,12 +4158,21 @@
   <PortalFiles>
     <File Id="6487" RelativePath="adam\Jobs3\5vaKiRhZXU2uzJldgngmlQ\Image\nubelson-fernandes-UcYBL5V0xWQ-unsplash.jpg" />
     <File Id="6486" RelativePath="adam\Jobs3\Es3nKD2JdkyqMxZRDwlBAA\Image\christina-wocintechchat-com-FVgECvTjlBQ-unsplash.jpg" />
+    <File Id="6515" RelativePath="adam\Jobs3\8ruKLhxehU-a6R8Wjmy_tQ\ApplicationFile\Hallo.pdf" />
+    <File Id="6514" RelativePath="adam\Jobs3\kIh0mKytWE-27Vurgqp-iQ\ApplicationFile\Hallo - Copy - Copy.pdf" />
+    <File Id="6516" RelativePath="adam\Jobs3\Wr3n7K4zd0Cb1AQu1ELNFQ\ApplicationFile\Hallo.pdf" />
   </PortalFiles>
   <PortalFolders>
     <Folder Id="14229" RelativePath="adam/Jobs3/5vaKiRhZXU2uzJldgngmlQ/Image/" />
     <Folder Id="14227" RelativePath="adam/Jobs3/Es3nKD2JdkyqMxZRDwlBAA/Image/" />
+    <Folder Id="14269" RelativePath="adam/Jobs3/8ruKLhxehU-a6R8Wjmy_tQ/ApplicationFile/" />
+    <Folder Id="14267" RelativePath="adam/Jobs3/kIh0mKytWE-27Vurgqp-iQ/ApplicationFile/" />
+    <Folder Id="14271" RelativePath="adam/Jobs3/Wr3n7K4zd0Cb1AQu1ELNFQ/ApplicationFile/" />
     <Folder Id="13918" RelativePath="adam/Jobs3/" />
     <Folder Id="14228" RelativePath="adam/Jobs3/5vaKiRhZXU2uzJldgngmlQ/" />
+    <Folder Id="14268" RelativePath="adam/Jobs3/8ruKLhxehU-a6R8Wjmy_tQ/" />
     <Folder Id="14226" RelativePath="adam/Jobs3/Es3nKD2JdkyqMxZRDwlBAA/" />
+    <Folder Id="14266" RelativePath="adam/Jobs3/kIh0mKytWE-27Vurgqp-iQ/" />
+    <Folder Id="14270" RelativePath="adam/Jobs3/Wr3n7K4zd0Cb1AQu1ELNFQ/" />
   </PortalFolders>
 </SexyContent>
