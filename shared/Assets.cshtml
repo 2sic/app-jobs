@@ -1,5 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
+
+@* Activate JS features of 2sxc *@
+@Kit.Page.Activate("2sxc.JsCore")
+
 @{
     var data = new {
         domAttribute = MyModel.String("DomAttribute"),
