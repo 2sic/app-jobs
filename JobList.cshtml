@@ -8,10 +8,8 @@
   var domAttribute = Constants.DomAttribute + UniqueKey; 
   
   var jobListeContent = As<Job>(MyItem);
-
   var categories = AsList<Category>(MyData["Categories"]);
   var jobs = AsList<Job>(MyData["Jobs"]);
-
 
   var contentToolbar = Kit.Toolbar.Default().New("Job", tweak: b => b.Ui("title=New Job"));
 
