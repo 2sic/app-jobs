@@ -6,7 +6,7 @@
 @{
   var domAttribute = Constants.DomAttribute + UniqueKey; 
   var fieldBuilder = GetCode("shared/FieldBuilder.cs");
-  var job = AsItems(MyData["Job"]).FirstOrDefault();
+  var job = AsList<Job>(MyData["Job"]).FirstOrDefault();
 }
 
 @if (!App.Settings.EnableRegistration) {

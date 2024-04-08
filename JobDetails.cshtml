@@ -7,7 +7,7 @@
     var domAttribute = Constants.DomAttribute + UniqueKey; 
 
     // Get current job to show from the View-Query + some Helpers
-    var job = AsItems(MyData).FirstOrDefault();
+    var job = AsList<Job>(MyData).FirstOrDefault();
 
     @* Preflight: check if job found, else show notification and stop processing *@
     if (job == null)
@@ -18,23 +18,23 @@
         return;
     }
 
-    var employmentTypes = AsItems(job.Children("EmploymentType")).ToArray();
+    var employmentTypes = AsList<EmploymentType>(job.EmploymentType).ToArray();
 
-    Kit.Page.SetTitle(job.String("Name"), "Details");
+    Kit.Page.SetTitle(job.Name, "Details");
 
     if (App.Settings.GoogleJobsApi) {
         #region Build JSON-LD
 
-        var jsonDescription = Tag.Strong(job.String("Description")) + "<br/><br/>" + job.String("Intro") + "<br/><br/>" +
-                            Tag.Strong(App.Resources.String("TasksHeading")) + job.String("Tasks") + Tag.Strong(App.Resources.String("QualificationsHeading")) +
-                            job.String("Qualifications") + Tag.Strong(App.Resources.OurOfferHeading) + job.String("OurOffer");
+        var jsonDescription = Tag.Strong(job.Description) + "<br/><br/>" + job.Intro + "<br/><br/>" +
+                            Tag.Strong(App.Resources.TasksHeading) + job.Tasks + Tag.Strong(App.Resources.QualificationsHeading) +
+                            job.Qualifications + Tag.Strong(App.Resources.OurOfferHeading) + job.OurOffer;
 
         var jsonLd = new Dictionary<string, object> {
             { "@context", "https://schema.org"},
             { "@type", "JobPosting" },
-            { "title", job.String("Name") },
+            { "title", job.Name },
             { "description", jsonDescription},
-            { "datePosted", job.DateTime("Date").ToString("s") },
+            { "datePosted", job.Date.ToString("s") },
             { "hiringOrganization", new Dictionary<string, object> {
                 { "@type", "Organization" },
                 { "name", App.Settings.Organization },
@@ -53,7 +53,7 @@
 
                 }}
             }},
-            { "employmentType", employmentTypes.Select(e => e.String("Key")) },
+            { "employmentType", employmentTypes.Select(e => e.Key) },
             { "directApply", true },
             { "identifier", new Dictionary<string, object> {
                 { "@type", "PropertyValue" },
@@ -71,22 +71,22 @@
         <div class="col-md-7 order-md-first">
             <h1 class="display-2">
                 <span class="mb-1 d-block">@App.Resources.NamePrefix</span>
-                @job.String("Name")
+                @job.Name
             </h1>
             <div>@App.Resources.DatePosted: @job.DateTime("Date").ToString("d")</div>
         </div>
         <div class="col-md-4 order-md-last offset-lg-1">
-            @if (Text.Has(job.String("Image"))) {
-                @job.Picture("Image", settings: "Content", factor: "1/2", imgClass: "rounded", imgAltFallback : job.String("Name"))
+            @if (job.IsNotEmpty("Image")) {
+                @job.Picture("Image", settings: "Content", factor: "1/2", imgClass: "rounded", imgAltFallback : job.Name)
             }
         </div>
     </div>
 
     <div class="row mb-3 mb-lg-4">
         <div class="col-12">
-            <h2>@job.String("Description")</h2>
+            <h2>@job.Description</h2>
             <p>&nbsp;</p>
-            <p style="white-space: pre-line">@job.String("Intro")</p>
+            <p style="white-space: pre-line">@job.Intro</p>
         </div>
     </div>
 
