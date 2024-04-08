@@ -1,18 +1,20 @@
-@inherits Custom.Hybrid.RazorTyped
-@using ToSic.Razor.Blade;
+@inherits AppCode.Razor.AppRazor
+@using ToSic.Razor.Blade
+@using AppCode.Data
+@using AppCode
 
 @{
+  var domAttribute = Constants.DomAttribute + UniqueKey; 
   var fieldBuilder = GetCode("shared/FieldBuilder.cs");
   var job = AsItems(MyData["Job"]).FirstOrDefault();
-  var domAttribute = "app-jobs2-" + UniqueKey;
 }
 
-@if (!App.Settings.Bool("EnableRegistration")) {
+@if (!App.Settings.EnableRegistration) {
 	<div class="alert alert-danger" role="alert">
     <span class="sr-only">Error:</span>
-    @Html.Raw(App.Resources.String("MessageRegistrationDisabled", scrubHtml: "p"))
+    @Html.Raw(Kit.Scrub.Only(App.Resources.MessageRegistrationDisabled, "p"))
   </div>
-  <a href="@App.Settings.Url("MainPage")" class="btn btn-outline-primary">@Html.Raw(App.Resources.String("BtnBack"))</a>
+  <a href="@App.Settings.MainPage" class="btn btn-outline-primary">@Html.Raw(App.Resources.BtnBack)</a>
 	
 	Kit.Page.SetHttpStatus(404);
   return;
@@ -22,9 +24,9 @@
 @if (job == null) {
   <div class="alert alert-danger" role="alert">
     <span class="sr-only">Error:</span>
-    @App.Resources.String("LabelNoResults")
+    @App.Resources.LabelNoResults
   </div>
-  <a href="@App.Settings.Url("MainPage")" class="btn btn-outline-primary">@Html.Raw(App.Resources.String("BtnBack"))</a>
+  <a href="@App.Settings.MainPage" class="btn btn-outline-primary">@Html.Raw(App.Resources.BtnBack)</a>
 
   Kit.Page.SetHttpStatus(404);
   return;
@@ -42,8 +44,8 @@
 	@* Salutation *@
     @fieldBuilder.Radio("Salutation", true, 
       	new string[] {
-        App.Resources.String("LabelMr"),
-		App.Resources.String("LabelMrs")
+        App.Resources.LabelMr,
+		App.Resources.LabelMrs
       }
     )
 
@@ -56,7 +58,7 @@
 	@fieldBuilder.Text("ZIPCity", true)
 
 	@* Country Select *@
-	@fieldBuilder.DropDown("Country", true, App.Resources.String("CountrySelection").Split('\n'))    
+	@fieldBuilder.DropDown("Country", true, App.Resources.CountrySelection.Split('\n'))    
 
 	@fieldBuilder.File("ApplicationFile", true, ".pdf", "ApplicationFile")
 
@@ -66,24 +68,24 @@
 	@* Submit Button *@
 	<div class="mb-3 row">
 		<div class="col-md-9 offset-sm-3">
-			<a href="@App.Settings.Url("DetailsPage")/id/@job.Id" class='btn @(Kit.Css.Is("bs3") ? "btn-default" : "btn-outline-primary")'>@Html.Raw(App.Resources.String("BtnBack"))</a>
-			<button type="button" app-jobs2-send class="btn btn-primary">@Html.Raw(App.Resources.String("BtnRegistration"))</button>
+			<a href="@App.Settings.DetailsPage/id/@job.Id" class='btn @(Kit.Css.Is("bs3") ? "btn-default" : "btn-outline-primary")'>@Html.Raw(App.Resources.BtnBack)</a>
+			<button type="button" app-jobs2-send class="btn btn-primary">@Html.Raw(App.Resources.BtnRegistration)</button>
 		</div>
 	</div>  
 
-	@AddHiddenMessage(App.Resources.String("MessageSending"), "warning", "msgSending")
-	@AddHiddenMessage(App.Resources.String("ValidationRequired"), "danger", "msgIncomplete")
-	@AddHiddenMessage(App.Resources.String("RegistrationError"), "danger", "msgError")
+	@AddHiddenMessage(App.Resources.MessageSending, "warning", "msgSending")
+	@AddHiddenMessage(App.Resources.ValidationRequired, "danger", "msgIncomplete")
+	@AddHiddenMessage(App.Resources.RegistrationError, "danger", "msgError")
 	<div id="msgOk" class="alert alert-success app-jobs2-message" role="alert">
-		<strong>@Html.Raw(App.Resources.String("SuccessThanks"))</strong>
-		@Html.Raw(App.Resources.String("SuccessMessage"))
+		<strong>@Html.Raw(App.Resources.SuccessThanks)</strong>
+		@Html.Raw(App.Resources.SuccessMessage)
 	</div>
 
 	@* if is required, because all app-job2-config-warning are shown after submit *@
-	@if (!Text.Has(App.Settings.String("OwnerMail")) || !Text.Has(App.Settings.String("MailFrom"))) {
+	@if (!Text.Has(App.Settings.OwnerMail) || !Text.Has(App.Settings.MailFrom)) {
 
 		<div class="alert alert-warning" id="" role="alert" app-job2-config-warning>
-			@Html.Raw(App.Resources.String("MessageDefaultMailSettings", scrubHtml: "p"))
+    		@Html.Raw(Kit.Scrub.Only(App.Resources.MessageDefaultMailSettings, "p"))
 		</div>		
 	}      
 </div>
@@ -98,4 +100,4 @@
   }
 }
 
-@Html.Partial("shared/Assets.cshtml", new { domAttribute })
+@Html.Partial("Assets.cshtml", new { domAttribute })

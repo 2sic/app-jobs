@@ -1,4 +1,7 @@
 using ToSic.Razor.Blade;
+using AppCode.Data;
+using AppCode;
+
 
 public class FieldBuilder : Custom.Hybrid.CodeTyped
 {
@@ -6,12 +9,12 @@ public class FieldBuilder : Custom.Hybrid.CodeTyped
     this file is for creating different fields e.g. input, textarea, file, dropdown and showing them in the template
 
     Example: 
-    Shows a required input of type text with a label infront of it
+    Shows a required input of type text with a label in front of it
 
     var FieldBuilder = GetCode("shared/FieldBuilders.cs");
     @FieldBuilder.Text("Subject", true)
 
-    Shows a required input of type text with a label infront of it
+    Shows a required input of type text with a label in front of it
 
     var FieldBuilder = GetCode("shared/FieldBuilders.cs");
     FieldBuilder.LabelInPlaceholder = true

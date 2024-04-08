@@ -1,7 +1,10 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits AppCode.Razor.AppRazor
 @using ToSic.Razor.Blade
+@using AppCode.Data
+@using AppCode
+
 @{
-    var domAttribute = "app-jobs2-" + UniqueKey;
+    var domAttribute = Constants.DomAttribute + UniqueKey; 
 
     // Get current job to show from the View-Query + some Helpers
     var job = AsItems(MyData).FirstOrDefault();
@@ -9,8 +12,8 @@
     @* Preflight: check if job found, else show notification and stop processing *@
     if (job == null)
     {
-        <h1>@App.Resources.String("LabelNoResults")</h1>
-        <a href="@App.Settings.Url("MainPage")" class="btn btn-outline-secondary">zurück</a>
+        <h1>@App.Resources.LabelNoResults</h1>
+        <a href="@App.Settings.MainPage" class="btn btn-outline-secondary">zurück</a>
         Kit.Page.SetHttpStatus(404, "Error: Job not Found.");
         return;
     }
@@ -19,12 +22,12 @@
 
     Kit.Page.SetTitle(job.String("Name"), "Details");
 
-    if (App.Settings.Bool("GoogleJobsApi")) {
+    if (App.Settings.GoogleJobsApi) {
         #region Build JSON-LD
 
         var jsonDescription = Tag.Strong(job.String("Description")) + "<br/><br/>" + job.String("Intro") + "<br/><br/>" +
                             Tag.Strong(App.Resources.String("TasksHeading")) + job.String("Tasks") + Tag.Strong(App.Resources.String("QualificationsHeading")) +
-                            job.String("Qualifications") + Tag.Strong(App.Resources.String("OurOfferHeading")) + job.String("OurOffer");
+                            job.String("Qualifications") + Tag.Strong(App.Resources.OurOfferHeading) + job.String("OurOffer");
 
         var jsonLd = new Dictionary<string, object> {
             { "@context", "https://schema.org"},
@@ -34,7 +37,7 @@
             { "datePosted", job.DateTime("Date").ToString("s") },
             { "hiringOrganization", new Dictionary<string, object> {
                 { "@type", "Organization" },
-                { "name", App.Settings.String("Organization") },
+                { "name", App.Settings.Organization },
                 { "logo", MyContext.Site.Url.Replace("/job-app", "") + "/Portals/job-app/2sxc/Jobs2/src/2sic-logo-square.png" },
                 { "sameAs", MyContext.Site.Url }
             }},
@@ -42,11 +45,11 @@
                 {"@type", "Place"},
                 { "address", new Dictionary<string, object> {
                     { "@type", "PostalAddress" },
-                    { "streetAddress", App.Settings.String("OrganizationStreet") },
-                    { "addressLocality", App.Settings.String("OrganizationCity") },
-                    { "addressRegion", App.Settings.String("OrganizationRegion") },
-                    { "postalCode", App.Settings.Int("OrganizationZip") },
-                    { "addressCountry", App.Settings.String("OrganizationCountry") }
+                    { "streetAddress", App.Settings.OrganizationStreet },
+                    { "addressLocality", App.Settings.OrganizationCity },
+                    { "addressRegion", App.Settings.OrganizationRegion },
+                    { "postalCode", App.Settings.OrganizationZip },
+                    { "addressCountry", App.Settings.OrganizationCountry }
 
                 }}
             }},
@@ -54,7 +57,7 @@
             { "directApply", true },
             { "identifier", new Dictionary<string, object> {
                 { "@type", "PropertyValue" },
-                { "name", App.Settings.String("Identifier") },
+                { "name", App.Settings.Identifier },
                 { "value", job.Id }
             }}
         };
@@ -67,10 +70,10 @@
     <div class="row mb-3 mb-lg-5">
         <div class="col-md-7 order-md-first">
             <h1 class="display-2">
-                <span class="mb-1 d-block">@App.Resources.String("NamePrefix")</span>
+                <span class="mb-1 d-block">@App.Resources.NamePrefix</span>
                 @job.String("Name")
             </h1>
-            <div>@App.Resources.String("DatePosted"): @job.DateTime("Date").ToString("d")</div>
+            <div>@App.Resources.DatePosted: @job.DateTime("Date").ToString("d")</div>
         </div>
         <div class="col-md-4 order-md-last offset-lg-1">
             @if (Text.Has(job.String("Image"))) {
@@ -89,21 +92,21 @@
 
     <div class="row mb-3 mb-lg-4">
         <div class="col-12">
-            <h2>@App.Resources.String("TasksHeading")</h2>
+            <h2>@App.Resources.TasksHeading</h2>
             @job.Html("Tasks", container:"")
         </div>
     </div>
 
     <div class="row mb-3 mb-lg-4">
         <div class="col-12">
-            <h2>@App.Resources.String("QualificationsHeading")</h2>
+            <h2>@App.Resources.QualificationsHeading</h2>
             @job.Html("Qualifications", container:"")
         </div>
     </div>
 
     <div class="row mb-3 mb-lg-4">
         <div class="col-12 mb-2">
-            <h2>@App.Resources.String("OurOfferHeading")</h2>
+            <h2>@App.Resources.OurOfferHeading</h2>
             @job.Html("OurOffer", container:"")
         </div>
     </div>
@@ -114,11 +117,11 @@
         </div>
     </div>
 
-    <a href="@App.Settings.Url("MainPage")" class="btn btn-outline-secondary">@App.Resources.String("BtnBack")</a>
-    @if (App.Settings.Bool("EnableRegistration")) {
-        <a href="@App.Settings.Url("RegistrationPage")/jobId/@job.Id" class="btn btn-primary">@App.Resources.String("BtnRegistration")</a>
+    <a href="@App.Settings.MainPage" class="btn btn-outline-secondary">@App.Resources.BtnBack</a>
+    @if (App.Settings.EnableRegistration) {
+        <a href="@App.Settings.RegistrationPage/jobId/@job.Id" class="btn btn-primary">@App.Resources.BtnRegistration</a>
     }
 </div>
 
 
-@Html.Partial("shared/Assets.cshtml", new { domAttribute })
+@Html.Partial("Assets.cshtml", new { domAttribute })

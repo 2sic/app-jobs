@@ -6,7 +6,7 @@
 
 | Aspect              | Status | Comments or Version |
 | ------------------- | :----: | ------------------- |
-| 2sxc                | ✅    | requires 2sxc v16.04
+| 2sxc                | ✅    | requires 2sxc v17.06.02
 | Dnn                 | ✅    | For v9.6.1+
 | Oqtane 2            | ✅    | Requires v04.00+
 | No jQuery           | ✅    | 
@@ -65,3 +65,5 @@ The Source Code is all here - so you can easily customize to your hearts desire!
   * everything typed
 * v03.05.01 2023-11
   * Bugfix Multiple File Upload (Conversion to type was wrong)
+* v03.05.17 2024-04
+  * strong typed
