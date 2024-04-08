@@ -82,7 +82,7 @@
 	</div>
 
 	@* if is required, because all app-job2-config-warning are shown after submit *@
-	@if (!Text.Has(App.Settings.OwnerMail) || !Text.Has(App.Settings.MailFrom)) {
+	@if (!App.Settings.IsNotEmpty("OwnerMail") || !App.Settings.IsNotEmpty("MailFrom")) {
 
 		<div class="alert alert-warning" id="" role="alert" app-job2-config-warning>
     		@Html.Raw(Kit.Scrub.Only(App.Resources.MessageDefaultMailSettings, "p"))
