@@ -15,6 +15,8 @@ using ToSic.Sxc.WebApi;
 // WIP
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using AppCode.Mail;
+using AppCode.Data;
 
 [AllowAnonymous]	// define that all commands can be accessed without a login
 [JsonFormatter]   // Use modern JSON formatter
@@ -28,10 +30,11 @@ public class FormController : Custom.Hybrid.ApiTyped
     contactFormRequest = new Dictionary<string, object>(contactFormRequest, StringComparer.OrdinalIgnoreCase);
 
     // 0. Pre-Check - validate recaptcha if enabled in the current object (the form configuration)
-    // var formConfig = = MyItem;
-    // if (formConfig.Bool("Recaptcha")) {
+    // var appSettings = As<AppSettings>(App.Settings);
+    // if (appSettings.Recaptcha)
+    // {
     //   Log.Add("checking Recaptcha");
-    //   GetCode("Parts/Recaptcha.cs").Validate(contactFormRequest["Recaptcha"] as string);
+    //   GetService<Recaptcha>().Validate(contactFormRequest.Recaptcha);
     // }
 
     // 0.1. after saving, remove recaptcha fields from the data-package, because we don't want them in the e-mails
@@ -93,9 +96,7 @@ public class FormController : Custom.Hybrid.ApiTyped
     RemoveKeys(contactFormRequest, new string[] { "ModuleId", "SenderIP", "Timestamp", "RawData", "Title", "EntityGuid", "GPDR", "Job" });
 
     // sending Mails
-    var sendMail = GetCode("Parts/SendMail.cs");
-    sendMail.sendMails(contactFormRequest, files);
-
+    GetService<Mail>().sendMails(contactFormRequest, files);
     wrapLog("ok");
   }
 
