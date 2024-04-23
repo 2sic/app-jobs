@@ -1,11 +1,10 @@
-@inherits AppCode.Razor.AppRazor
+@inherits AppCode.Razor.FormBuilderRazorBase
 @using ToSic.Razor.Blade
 @using AppCode.Data
 @using AppCode
 
 @{
   var domAttribute = Constants.DomAttribute + UniqueKey; 
-  var fieldBuilder = GetCode("shared/FieldBuilder.cs");
   var job = AsList<Job>(MyData["Job"]).FirstOrDefault();
 }
 
@@ -39,31 +38,31 @@
 >
 	<input type="hidden" id="Job" name="Job" value="@job.Guid">
 
-	@fieldBuilder.Text("JobName", true, true, job.String("Name"))
+	@TextField("JobName", true, true, job.Name)
 
 	@* Salutation *@
-    @fieldBuilder.Radio("Salutation", true, 
+    @Radio("Salutation", true, 
       	new string[] {
         App.Resources.LabelMr,
 		App.Resources.LabelMrs
       }
     )
 
-	@fieldBuilder.Text("FirstName", true)
-	@fieldBuilder.Text("LastName", true)
-	@fieldBuilder.EMail("Mail", true)    
-	@fieldBuilder.Text("Phone", false)
-	@fieldBuilder.Text("MobilePhone", false)
-	@fieldBuilder.Text("Street", true)
-	@fieldBuilder.Text("ZIPCity", true)
+	@TextField("FirstName", true)
+	@TextField("LastName", true)
+	@EMail("Mail", true)    
+	@TextField("Phone", false)
+	@TextField("MobilePhone", false)
+	@TextField("Street", true)
+	@TextField("ZIPCity", true)
 
 	@* Country Select *@
-	@fieldBuilder.DropDown("Country", true, App.Resources.CountrySelection.Split('\n'))    
+	@DropDown("Country", true, App.Resources.CountrySelection.Split('\n'))    
 
-	@fieldBuilder.File("ApplicationFile", true, ".pdf", "ApplicationFile")
+	@File("ApplicationFile", true, ".pdf", "ApplicationFile")
 
 	@* Terms *@
-  @fieldBuilder.Checkbox("Gpdr", true)
+  @Checkbox("Gpdr", true)
 
 	@* Submit Button *@
 	<div class="mb-3 row">
