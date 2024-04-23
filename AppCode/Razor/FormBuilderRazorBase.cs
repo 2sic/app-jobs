@@ -102,6 +102,7 @@ namespace AppCode.Razor
       return Field(idString, required, item);
     }
 
+
     /// <summary>
     /// Returns an input of type email with common attributes and a possible placeholder
     /// </summary>
@@ -170,9 +171,13 @@ namespace AppCode.Razor
     /// <summary>
     /// Returns a checkbox with common attributes
     /// </summary>
-    public IHtmlTag Checkbox(string idString, bool required)
+      public IHtmlTag Checkbox(string idString, bool required, bool isTerm = false)
     {
       var checkbox = Tag.Input().Attr("type", "checkbox").Id(idString).Name(idString).Class("form-check-input");
+
+      if (isTerm)
+        checkbox.Attr("terms", "true");
+
       SetRequired(checkbox, required);
       var labelTranslated = App.Resources.String("Label" + idString, scrubHtml: "p");
       var label = ToSic.Razor.Blade.Text.First(labelTranslated, idString) + (required ? "*" : "");
@@ -182,7 +187,7 @@ namespace AppCode.Razor
       {
         return Tag.Div().Class(FormValidationClass() + "form-group").Wrap(
             Tag.Div().Class("checkbox").Wrap(
-            Tag.Label().Wrap(checkbox, label)
+                Tag.Label().Wrap(checkbox, label)
             )
         );
       }
@@ -190,8 +195,8 @@ namespace AppCode.Razor
       {
         // Bootstrap4 and 5
         return Tag.Div().Class(FormValidationClass() + "mb-3 form-check").Wrap(
-        checkbox,
-        Tag.Label(label).Class("form-check-label").For(idString)
+            checkbox,
+            Tag.Label(label).Class("form-check-label").For(idString)
         );
       }
     }

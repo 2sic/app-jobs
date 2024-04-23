@@ -75,7 +75,6 @@ function init({ domAttribute, currentCategory, validationOptions }: { domAttribu
           showAlert(eventsWrapper, 'msgError')
           showConfigWarnings(eventsWrapper, 'app-jobs2-config-warning')
           enableInputs(eventsWrapper)
-    
           return
         }
         
