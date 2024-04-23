@@ -89,7 +89,7 @@ public class FormController : Custom.Hybrid.ApiTyped
       Log.Add("No files found to save");
     }
 
-    // remove App informations from data-package
+    // remove App information's from data-package
     RemoveKeys(contactFormRequest, new string[] { "ModuleId", "SenderIP", "Timestamp", "RawData", "Title", "EntityGuid", "GPDR", "Job" });
 
     // sending Mails
