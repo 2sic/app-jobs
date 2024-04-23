@@ -22,10 +22,10 @@ public class SendMail : Custom.Hybrid.CodeTyped
 
     var customerMail = contactFormRequest["Mail"].ToString();
 
+    // If Mail Settings are missing, throw an exception
     if (string.IsNullOrEmpty(settings.MailFrom) || string.IsNullOrEmpty(settings.OwnerMail))
-    {
       throw new Exception("Mail settings are missing. Please configure 'MailFrom' and 'OwnerMail' settings.");
-    }
+      
     try
     {
       Send(
