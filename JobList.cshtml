@@ -5,13 +5,19 @@
 @using AppCode
 
 @{
-  var domAttribute = Constants.DomAttribute + UniqueKey; 
-  
+
+  // Us for Content Toolbar
   var jobListeContent = As<Job>(MyItem);
+
+  // Get a List of Categories and Jobs from Data 
   var categories = AsList<Category>(MyData["Categories"]);
   var jobs = AsList<Job>(MyData["Jobs"]);
 
+  // Use on the Top for Manage Content 
   var contentToolbar = Kit.Toolbar.Default().New("Job", tweak: b => b.Ui("title=New Job"));
+
+  // Get the unique domAttribute key
+  var domAttribute = Constants.DomAttribute + UniqueKey; 
 
   var isBs3 = Kit.Css.Is("bs3");
 }

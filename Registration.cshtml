@@ -4,8 +4,10 @@
 @using AppCode
 
 @{
+// Get the unique domAttribute key 
   var domAttribute = Constants.DomAttribute + UniqueKey; 
-  var job = AsList<Job>(MyData["Job"]).FirstOrDefault();
+  // Get the job from the data
+  var job = As<Job>(MyData["Job"]);
 }
 
 @if (!App.Settings.EnableRegistration) {

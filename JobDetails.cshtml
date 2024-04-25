@@ -4,10 +4,11 @@
 @using AppCode
 
 @{
-    var domAttribute = Constants.DomAttribute + UniqueKey; 
-
     // Get current job to show from the View-Query + some Helpers
     var job = AsList<Job>(MyData).FirstOrDefault();
+
+    // Get the unique domAttribute key
+    var domAttribute = Constants.DomAttribute + UniqueKey;  
 
     @* Preflight: check if job found, else show notification and stop processing *@
     if (job == null)

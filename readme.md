@@ -4,11 +4,11 @@
 
 > This is a [2sxc](https://2sxc.org) App for [DNN ☢️](https://www.dnnsoftware.com/) and [Oqtane 💧](https://www.oqtane.org/)
 
-| Aspect              | Status | Comments or Version |
-| ------------------- | :----: | ------------------- |
-| 2sxc                | ✅    | requires 2sxc v17.06.02
+| Aspect              | Status | Comments or Version
+| ------------------- | :----: | -------------------
+| 2sxc                | ✅    | requires 2sxc v17.07.00
 | Dnn                 | ✅    | For v9.6.1+
-| Oqtane 2            | ✅    | Requires v04.00+
+| Oqtane              | ✅    | Requires v04.00+
 | No jQuery           | ✅    | 
 | Live Demo           | ➖    |
 | Install Checklist   | ✅    | See [Installation] on [azing.org](https://azing.org/2sxc)
@@ -67,3 +67,5 @@ The Source Code is all here - so you can easily customize to your hearts desire!
   * Bugfix Multiple File Upload (Conversion to type was wrong)
 * v03.05.17 2024-04
   * strong typed
+  * Auto Generated Class
+  * Typed MyItem
