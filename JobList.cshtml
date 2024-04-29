@@ -31,14 +31,16 @@
 
 <div @domAttribute class="app-jobs2" @contentToolbar.For(jobListeContent)>
 
-  @if (App.Settings.UseCategories) {
+  @if (App.Settings.UseCategories) 
+  {
     <div class="app-jobs2-categories-list">
       @if (categories.Count() != 1) {
         <a app-jobs2-category-button class='@(isBs3 ? "btn btn-primary" : "btn btn-outline-primary")' app-jobs2-filter="nofilter" href='@Link.To()'>
           @App.Resources.LabelNofilter
         </a>
 
-        foreach (var category in categories) {
+        foreach (var category in categories) 
+        {
           <a app-jobs2-category-button class='@(isBs3 ? "btn btn-primary" : "btn btn-outline-primary")' 
             app-jobs2-filter="@category.Key" href='@Link.To(parameters: "category=" + category.Key)'>
             @category.Name
@@ -49,7 +51,8 @@
   }
 
   <div class='app-jobs2-list row'>
-    @foreach (var job in jobs) {
+    @foreach (var job in jobs) 
+    {
 
       var jobCategories = ((IEnumerable<Category>)job.Categories).Select(x => x.Key);
       var detailLink = App.Settings.DetailsPage + "/id/" + job.Id;

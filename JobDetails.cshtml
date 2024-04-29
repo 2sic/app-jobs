@@ -23,7 +23,8 @@
 
     Kit.Page.SetTitle(job.Name, "Details");
 
-    if (App.Settings.GoogleJobsApi) {
+    if (App.Settings.GoogleJobsApi) 
+    {
         #region Build JSON-LD
 
         var jsonDescription = Tag.Strong(job.Description) + "<br/><br/>" + job.Intro + "<br/><br/>" +
