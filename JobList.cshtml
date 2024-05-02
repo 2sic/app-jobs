@@ -60,8 +60,7 @@
       var detailLink = App.Settings.DetailsPage + "/id/" + job.Id;
       
       <div @Kit.Toolbar.Default(job) class='app-jobs3-job @(isBs3 ? "col col-xs-12" : "col-12")' app-jobs3-filterelem="@Kit.Json.ToJson(jobCategories)">
-        <a class="app-jobs3-link-box" title="@job.Name" href="@detailLink">
-          <div class="row">                          
+          <div class="row position-relative">                          
             <div class='@(isBs3 ? "col-xs-9" : "col-9")'>
               <h3>@job.Name</h3>
               <div class="app-jobs3-categories-list">
@@ -79,8 +78,9 @@
                 <span>@category.Name</span>
               }
             </div>
+            <a class="stretched-link" title="@job.Name" href="@detailLink"></a>
           </div>
-        </a>
+        
       </div>
     }
   </div>

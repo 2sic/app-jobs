@@ -8,6 +8,16 @@
     transition: opacity .4s ease-in-out;
     padding: $grid-gutter-width/2;
 
+    .stretched-link::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      content: "";
+    }
+
     .app-jobs3-job {
       padding: $grid-gutter-width/2;
       transition: background .2s ease;
