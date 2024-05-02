@@ -12,7 +12,7 @@ namespace AppCode.Mail
       // Log what's happening in case we run into problems
       var wrapLog = Log.Call();
 
-      if (!(encodedResponse is string) || String.IsNullOrEmpty(encodedResponse as string))
+      if (!(encodedResponse is string) || string.IsNullOrEmpty(encodedResponse))
         throw new Exception("recaptcha is empty");
 
       // Get the private key from Settings - if it's from presets, it is encrypted

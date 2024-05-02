@@ -65,7 +65,7 @@ The Source Code is all here - so you can easily customize to your hearts desire!
   * everything typed
 * v03.05.01 2023-11
   * Bugfix Multiple File Upload (Conversion to type was wrong)
-* v03.05.17 2024-04
+* v03.17.00 2024-04
   * strong typed
   * Auto Generated Class
   * Typed MyItem

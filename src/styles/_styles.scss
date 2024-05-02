@@ -1,14 +1,14 @@
 // Styles for theoutput of the categories and positions
-.app-jobs2 {
-  .app-jobs2-categories-list {
+.app-jobs3 {
+  .app-jobs3-categories-list {
     margin-bottom: $grid-gutter-width/2;
   }
 
-  .app-jobs2-list {
+  .app-jobs3-list {
     transition: opacity .4s ease-in-out;
     padding: $grid-gutter-width/2;
 
-    .app-jobs2-job {
+    .app-jobs3-job {
       padding: $grid-gutter-width/2;
       transition: background .2s ease;
 
@@ -23,7 +23,7 @@
       &:hover {
         background: #E1E5E5;
 
-        .app-jobs2-link {
+        .app-jobs3-link {
           text-decoration: underline;
           color: $primary;
         }
@@ -33,13 +33,13 @@
         margin: 0;
       }
 
-      > .app-jobs2-link-box {
+      > .app-jobs3-link-box {
         &:hover {
           text-decoration: none;
         }
       }
 
-      .app-jobs2-categories-list {
+      .app-jobs3-categories-list {
         margin: 0 0 7px 0;
         
         > span {
@@ -59,7 +59,7 @@
       }    
     }
 
-    .app-jobs2-categories-container {
+    .app-jobs3-categories-container {
       text-align: right;
       
       > span {
@@ -73,7 +73,7 @@
    
 }
 
-.app-jobs2-form {
+.app-jobs3-form {
   .form-required {
     label {
       &:after {
@@ -89,7 +89,7 @@
     }
   }
 
-  .app-jobs2-field-required:after {
+  .app-jobs3-field-required:after {
     content: "   *";
     font-size: 12px;
     color: #a94442;
@@ -111,7 +111,7 @@
     color: #a94442;
   }
   
-  .app-jobs2-message { display: none; }
+  .app-jobs3-message { display: none; }
   
   .radio-group {
     .pristine-error {

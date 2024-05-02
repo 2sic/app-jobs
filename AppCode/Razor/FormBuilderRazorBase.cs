@@ -5,7 +5,7 @@ namespace AppCode.Razor
   /// <summary>
   /// Base Class for Razor Views which have a typed App but don't use the Model or use the typed MyModel.
   /// </summary>
-  public abstract class FormBuilderRazorBase : AppRazor<object>
+  public abstract class FormBuilderRazorBase : AppRazor
   {
     /* 
    this file is for creating different fields e.g. input, textarea, file, dropdown and showing them in the template
@@ -53,7 +53,7 @@ namespace AppCode.Razor
     internal string LabelClasses(bool required)
     {
       return "control-label "
-        + (required ? "app-jobs2-field-required " : "")
+        + (required ? "app-jobs3-field-required " : "")
         + (Kit.Css.Is("bs3") ? "col col-xs-12 col-sm-3" : "col-12 col-sm-3");
     }
 

@@ -35,7 +35,7 @@
   return;
 }
 
-<div class="app-jobs2 app-jobs2-form" 
+<div class="app-jobs3 app-jobs3-form" 
   @Kit.Toolbar.Default(job)
   @domAttribute
   data-webservice="app/auto/api/Form/ProcessForm"
@@ -72,14 +72,14 @@
 	<div class="mb-3 row">
 		<div class="col-md-9 offset-sm-3">
 			<a href="@App.Settings.DetailsPage/id/@job.Id" class='btn @(Kit.Css.Is("bs3") ? "btn-default" : "btn-outline-primary")'>@Html.Raw(App.Resources.BtnBack)</a>
-			<button type="button" app-jobs2-send class="btn btn-primary">@Html.Raw(App.Resources.BtnRegistration)</button>
+			<button type="button" app-jobs3-send class="btn btn-primary">@Html.Raw(App.Resources.BtnRegistration)</button>
 		</div>
 	</div>  
 
 	@AddHiddenMessage(App.Resources.MessageSending, "warning", "msgSending")
 	@AddHiddenMessage(App.Resources.ValidationRequired, "danger", "msgIncomplete")
 	@AddHiddenMessage(App.Resources.RegistrationError, "danger", "msgError")
-	<div id="msgOk" class="alert alert-success app-jobs2-message" role="alert">
+	<div id="msgOk" class="alert alert-success app-jobs3-message" role="alert">
 		<strong>@Html.Raw(App.Resources.SuccessThanks)</strong>
 		@Html.Raw(App.Resources.SuccessMessage)
 	</div>
@@ -94,7 +94,7 @@
 
 @functions {
   object AddHiddenMessage(string message, string type = "warning", string id = "", string attribute = "") {
-    var classes = "alert alert-" + type + " app-jobs2-message";
+    var classes = "alert alert-" + type + " app-jobs3-message";
 		var rawMessage = Kit.Scrub.Only(message, "p");
     var messageDiv = Tag.Div(rawMessage).Class(classes).Id(id).Attr("role", "alert");
     if (attribute != "") { messageDiv.Attr(attribute, ""); }

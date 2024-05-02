@@ -3,20 +3,15 @@ using AppCode.Mail;
 using AppCode.Data;
 namespace AppCode.MailTemplates
 {
-  public class EmailToCustomer : Custom.Hybrid.CodeTyped, IMailTemplate
+  public class EmailToCustomer : AppCode.Services.ServiceBase, IMailTemplate
   {
     // This generates the e-mail subject
-    public string Subject()
-    {
-      var appRes = As<AppResources>(App.Resources);
-
-       return Kit.Scrub.Only(appRes.MailOwnerSubject, "p");
-    }
+    // This generates the e-mail subject
+    public string Subject() => App.Resources.String("MailOwnerSubject", scrubHtml: "p");
 
     // This generates the e-mail body
     public string Message(Dictionary<string, object> request)
     {
-      var appRes = As<AppResources>(App.Resources);
       return @"
     <!doctype html>
     <html>
@@ -27,7 +22,7 @@ namespace AppCode.MailTemplates
           body { font-family: Helvetica, sans-serif; }
         </style>
       </head>
-      <body>" + appRes.MailCustomerBody +
+      <body>" + App.Resources.MailCustomerBody +
         @"</body>
     </html>";
     }

@@ -5,20 +5,20 @@ import { PristineOptions } from './lib-2sxc-pristine-options';
 
 // so it can be called from the HTML when content re-initializes dynamically
 const winAny = (window as any)
-winAny.appJobs2 ??= {}
-winAny.appJobs2.init ??= init
+winAny.appJobs3 ??= {}
+winAny.appJobs3.init ??= init
 
 const debug = false
 
 function init({ domAttribute, currentCategory, validationOptions }: { domAttribute: string, currentCategory: string, validationOptions: PristineOptions }) {
   const appWrapper = document.querySelector(`[${domAttribute}]`)
-  const categoryButtons = appWrapper.querySelectorAll(`[app-jobs2-category-button]`)
+  const categoryButtons = appWrapper.querySelectorAll(`[app-jobs3-category-button]`)
   const noReloadRequired = currentCategory == ""
   setPrimary(currentCategory, categoryButtons)
 
   categoryButtons.forEach((categoryButton: HTMLElement) =>
     categoryButton.addEventListener('click', ((e) => {
-      const filter = categoryButton.getAttribute('app-jobs2-filter');
+      const filter = categoryButton.getAttribute('app-jobs3-filter');
 
       if (noReloadRequired) {
         e.preventDefault()
@@ -33,7 +33,7 @@ function init({ domAttribute, currentCategory, validationOptions }: { domAttribu
   const eventsWrapper = document.querySelector(`[${domAttribute}]`);
   if(!eventsWrapper) return
 
-  const submitButton = eventsWrapper.querySelector('[app-jobs2-send]') as HTMLButtonElement;
+  const submitButton = eventsWrapper.querySelector('[app-jobs3-send]') as HTMLButtonElement;
   submitButton.addEventListener('click', async (event: Event) => {
     event.preventDefault();
 
@@ -73,7 +73,7 @@ function init({ domAttribute, currentCategory, validationOptions }: { domAttribu
           if(debug) console.log('error', result.status);
     
           showAlert(eventsWrapper, 'msgError')
-          showConfigWarnings(eventsWrapper, 'app-jobs2-config-warning')
+          showConfigWarnings(eventsWrapper, 'app-jobs3-config-warning')
           enableInputs(eventsWrapper)
           return
         }
@@ -83,7 +83,7 @@ function init({ domAttribute, currentCategory, validationOptions }: { domAttribu
         submitButton.setAttribute("disabled", "")
   
         showAlert(eventsWrapper, 'msgOk')
-        showConfigWarnings(eventsWrapper, 'app-jobs2-config-warning')
+        showConfigWarnings(eventsWrapper, 'app-jobs3-config-warning')
         disableInputs(eventsWrapper, false)
   
       })
@@ -96,7 +96,7 @@ function init({ domAttribute, currentCategory, validationOptions }: { domAttribu
 function setPrimary(filter: string, buttons: NodeListOf<Element>) {
   if (filter == "") filter = "nofilter"
   buttons.forEach((button) => {
-    if (button.getAttribute('app-jobs2-filter') == filter) {
+    if (button.getAttribute('app-jobs3-filter') == filter) {
       button.classList.remove('btn-outline-primary')
       button.classList.add('btn-primary')
       return
@@ -108,8 +108,8 @@ function setPrimary(filter: string, buttons: NodeListOf<Element>) {
 
 // filter shown items by selected Filter
 function filterItems(selectedFilter: string, appWrapper: Element) {
-  appWrapper.querySelectorAll(`[app-jobs2-filterelem]`).forEach((jobElement: HTMLElement) => {
-    if (selectedFilter === "nofilter" || [...JSON.parse(jobElement.getAttribute('app-jobs2-filterelem'))].find(filter => filter == selectedFilter)) {
+  appWrapper.querySelectorAll(`[app-jobs3-filterelem]`).forEach((jobElement: HTMLElement) => {
+    if (selectedFilter === "nofilter" || [...JSON.parse(jobElement.getAttribute('app-jobs3-filterelem'))].find(filter => filter == selectedFilter)) {
       jobElement.style.display = "block"
       return
     }

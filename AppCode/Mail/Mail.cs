@@ -1,14 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Mail;
 using System.Text;
-using ToSic.Razor.Blade;
 
 namespace AppCode.Mail
 {
-    public class Mail : Custom.Hybrid.CodeTyped
+  public class Mail : Custom.Hybrid.CodeTyped
     {
         public void sendMails(Dictionary<string, object> contactFormRequest, List<ToSic.Sxc.Adam.IFile> files)
         {

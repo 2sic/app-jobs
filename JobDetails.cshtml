@@ -31,6 +31,8 @@
                             Tag.Strong(App.Resources.TasksHeading) + job.Tasks + Tag.Strong(App.Resources.QualificationsHeading) +
                             job.Qualifications + Tag.Strong(App.Resources.OurOfferHeading) + job.OurOffer;
 
+        // TODO: @2dg - move the code which creates this Dictionary to a helper class or something, it's took big for inside a razor
+        // ...also in that code, shorten access to AppSettings to just "appSet" or something
         var jsonLd = new Dictionary<string, object> {
             { "@context", "https://schema.org"},
             { "@type", "JobPosting" },
@@ -68,7 +70,7 @@
         #endregion
     }
 }
-<div class="app-jobs2-details"  @Kit.Toolbar.Default(job)>
+<div class="app-jobs3-details"  @Kit.Toolbar.Default(job)>
     <div class="row mb-3 mb-lg-5">
         <div class="col-md-7 order-md-first">
             <h1 class="display-2">
@@ -95,27 +97,27 @@
     <div class="row mb-3 mb-lg-4">
         <div class="col-12">
             <h2>@App.Resources.TasksHeading</h2>
-            @job.Html("Tasks", container:"")
+            @job.Html("Tasks")
         </div>
     </div>
 
     <div class="row mb-3 mb-lg-4">
         <div class="col-12">
             <h2>@App.Resources.QualificationsHeading</h2>
-            @job.Html("Qualifications", container:"")
+            @job.Html("Qualifications")
         </div>
     </div>
 
     <div class="row mb-3 mb-lg-4">
         <div class="col-12 mb-2">
             <h2>@App.Resources.OurOfferHeading</h2>
-            @job.Html("OurOffer", container:"")
+            @job.Html("OurOffer")
         </div>
     </div>
 
     <div class="row mb-3 mb-lg-4">
         <div class="col-12 mb-2">
-            @job.Html("Outro", container:"")
+            @job.Html("Outro")
         </div>
     </div>
 

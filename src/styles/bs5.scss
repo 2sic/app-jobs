@@ -11,7 +11,9 @@
 // Include needed variables and mixins from Bootstrap 5 this
 // You must adapt these paths to match your Bootstrap 5 skin
 @import "../../node_modules/bs5/scss/variables";
+@import "../../node_modules/bs5/scss/_mixins";
 @import "../../node_modules/bs5/scss/mixins/_breakpoints.scss";
+@import "../../node_modules/bs5/scss/_card";
 
 // General CSS stuff for everything
 @import "_styles.scss"; 
