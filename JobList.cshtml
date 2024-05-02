@@ -31,7 +31,7 @@
 
 <div @domAttribute class="app-jobs3" @contentToolbar.For(jobListeContent)>
 
-  @* TODO: add comment *@
+  @* Get all Categories in a Button on Top of the List *@
   @if (App.Settings.UseCategories) 
   {
     <div class="app-jobs3-categories-list">
@@ -52,7 +52,7 @@
     </div>
   }
 
-  @* TODO: add comment *@
+  @* Show a List of all Jobs *@
   <div class='app-jobs3-list row'>
     @foreach (var job in jobs) 
     {
@@ -60,7 +60,7 @@
       var detailLink = App.Settings.DetailsPage + "/id/" + job.Id;
       
       <div @Kit.Toolbar.Default(job) class='app-jobs3-job @(isBs3 ? "col col-xs-12" : "col-12")' app-jobs3-filterelem="@Kit.Json.ToJson(jobCategories)">
-        <a target="_blank" class="app-jobs3-link-box" title="@job.Name" href="@detailLink">
+        <a class="app-jobs3-link-box" title="@job.Name" href="@detailLink">
           <div class="row">                          
             <div class='@(isBs3 ? "col-xs-9" : "col-9")'>
               <h3>@job.Name</h3>

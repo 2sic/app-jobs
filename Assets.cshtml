@@ -1,5 +1,6 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits AppCode.Razor.AppRazor
 @using ToSic.Razor.Blade;
+@using AppCode
 
 @* Activate JS features of 2sxc *@
 @Kit.Page.Activate("2sxc.JsCore")
@@ -11,12 +12,11 @@
     // options for the pristine validation plugin
     validationOptions = new {
       // class of the parent element where the error/success class is added
-      // TODO: USE Constants.DomAttribute to create these values
-      classTo = "app-jobs3-form-fields",
+      classTo = Constants.Jobs3Fields,
       errorClass = "has-danger",
       successClass = "has-success",
       // class of the parent element where error text element is appended
-      errorTextParent = "app-jobs3-form-fields",
+      errorTextParent = Constants.Jobs3Fields, 
       // type of element to create for the error text
       errorTextTag = "div",
       // class of the error text element

@@ -5,25 +5,8 @@ namespace AppCode.Razor
   /// <summary>
   /// Base Class for Razor Views which have a typed App but don't use the Model or use the typed MyModel.
   /// </summary>
-  public abstract class FormBuilderRazorBase : AppRazor
+  public abstract class FormBuilderRazor : AppRazor
   {
-    /* 
-   this file is for creating different fields e.g. input, textarea, file, dropdown and showing them in the template
-
-   Example: 
-   Shows a required input of type text with a label in front of it
-
-   var FieldBuilder = GetCode("shared/FieldBuilders.cs");
-   @FieldBuilder.Text("Subject", true)
-
-   Shows a required input of type text with a label in front of it
-
-   var FieldBuilder = GetCode("shared/FieldBuilders.cs");
-   FieldBuilder.LabelInPlaceholder = true
-   @FieldBuilder.EMail("Email", true)
-
-   Shows a required input of type text with a placeholder
- */
 
     /// <summary>
     /// Handles the visibility of a label or a placeholder

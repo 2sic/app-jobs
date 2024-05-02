@@ -1,4 +1,4 @@
-@inherits AppCode.Razor.AppRazor
+@inherits AppCode.Razor.DetailRazor
 @using ToSic.Razor.Blade
 @using AppCode.Data
 @using AppCode
@@ -25,14 +25,15 @@
 
     if (App.Settings.GoogleJobsApi) 
     {
+        @* var jsonLd2 = GetJsonForDetailJob(job, employmentTypes); *@
+        // TODO: @2dg - move the code which creates this Dictionary to a helper class or something, it's took big for inside a razor
+        // ...also in that code, shorten access to AppSettings to just "appSet" or something
         #region Build JSON-LD
 
         var jsonDescription = Tag.Strong(job.Description) + "<br/><br/>" + job.Intro + "<br/><br/>" +
                             Tag.Strong(App.Resources.TasksHeading) + job.Tasks + Tag.Strong(App.Resources.QualificationsHeading) +
                             job.Qualifications + Tag.Strong(App.Resources.OurOfferHeading) + job.OurOffer;
 
-        // TODO: @2dg - move the code which creates this Dictionary to a helper class or something, it's took big for inside a razor
-        // ...also in that code, shorten access to AppSettings to just "appSet" or something
         var jsonLd = new Dictionary<string, object> {
             { "@context", "https://schema.org"},
             { "@type", "JobPosting" },
