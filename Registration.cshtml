@@ -7,7 +7,7 @@
 // Get the unique domAttribute key 
   var domAttribute = Constants.DomAttribute + UniqueKey; 
   // Get the job from the data
-  var job = As<Job>(MyData["Job"]);
+  var job = As<Job>(MyData.GetStream("Job"));
 }
 
 @if (!App.Settings.EnableRegistration) 
