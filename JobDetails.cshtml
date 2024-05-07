@@ -23,52 +23,9 @@
 
     Kit.Page.SetTitle(job.Name, "Details");
 
-    if (App.Settings.GoogleJobsApi) 
-    {
-        @* var jsonLd2 = GetJsonForDetailJob(job, employmentTypes); *@
-        // TODO: @2dg - move the code which creates this Dictionary to a helper class or something, it's took big for inside a razor
-        // ...also in that code, shorten access to AppSettings to just "appSet" or something
-        #region Build JSON-LD
-
-        var jsonDescription = Tag.Strong(job.Description) + "<br/><br/>" + job.Intro + "<br/><br/>" +
-                            Tag.Strong(App.Resources.TasksHeading) + job.Tasks + Tag.Strong(App.Resources.QualificationsHeading) +
-                            job.Qualifications + Tag.Strong(App.Resources.OurOfferHeading) + job.OurOffer;
-
-        var jsonLd = new Dictionary<string, object> {
-            { "@context", "https://schema.org"},
-            { "@type", "JobPosting" },
-            { "title", job.Name },
-            { "description", jsonDescription},
-            { "datePosted", job.Date.ToString("s") },
-            { "hiringOrganization", new Dictionary<string, object> {
-                { "@type", "Organization" },
-                { "name", App.Settings.Organization },
-                { "logo", MyContext.Site.Url.Replace("/job-app", "") + "/Portals/job-app/2sxc/Jobs2/src/2sic-logo-square.png" },
-                { "sameAs", MyContext.Site.Url }
-            }},
-            { "jobLocation", new Dictionary<string, object> {
-                {"@type", "Place"},
-                { "address", new Dictionary<string, object> {
-                    { "@type", "PostalAddress" },
-                    { "streetAddress", App.Settings.OrganizationStreet },
-                    { "addressLocality", App.Settings.OrganizationCity },
-                    { "addressRegion", App.Settings.OrganizationRegion },
-                    { "postalCode", App.Settings.OrganizationZip },
-                    { "addressCountry", App.Settings.OrganizationCountry }
-
-                }}
-            }},
-            { "employmentType", employmentTypes.Select(e => e.Key) },
-            { "directApply", true },
-            { "identifier", new Dictionary<string, object> {
-                { "@type", "PropertyValue" },
-                { "name", App.Settings.Identifier },
-                { "value", job.Id }
-            }}
-        };
-
-        Kit.Page.AddJsonLd(jsonLd);
-        #endregion
+    if (App.Settings.GoogleJobsApi) {
+        // Get JsonLd for a JobPosting
+        Kit.Page.AddJsonLd(GetJsonLdForDetailJob(job, employmentTypes));
     }
 }
 <div class="app-jobs3-details"  @Kit.Toolbar.Default(job)>
