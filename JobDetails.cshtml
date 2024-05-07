@@ -1,124 +1,89 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits AppCode.Razor.DetailRazor
 @using ToSic.Razor.Blade
-@{
-    var domAttribute = "app-jobs2-" + UniqueKey;
+@using AppCode.Data
+@using AppCode
 
+@{
     // Get current job to show from the View-Query + some Helpers
-    var job = AsItems(MyData).FirstOrDefault();
+    var job = AsList<Job>(MyData).FirstOrDefault();
+
+    // Get the unique domAttribute key
+    var domAttribute = Constants.DomAttribute + UniqueKey;  
 
     @* Preflight: check if job found, else show notification and stop processing *@
     if (job == null)
     {
-        <h1>@App.Resources.String("LabelNoResults")</h1>
-        <a href="@App.Settings.Url("MainPage")" class="btn btn-outline-secondary">zurück</a>
+        <h1>@App.Resources.LabelNoResults</h1>
+        <a href="@App.Settings.MainPage" class="btn btn-outline-secondary">zurück</a>
         Kit.Page.SetHttpStatus(404, "Error: Job not Found.");
         return;
     }
 
-    var employmentTypes = AsItems(job.Children("EmploymentType")).ToArray();
+    var employmentTypes = AsList<EmploymentType>(job.EmploymentType).ToArray();
 
-    Kit.Page.SetTitle(job.String("Name"), "Details");
+    Kit.Page.SetTitle(job.Name, "Details");
 
-    if (App.Settings.Bool("GoogleJobsApi")) {
-        #region Build JSON-LD
-
-        var jsonDescription = Tag.Strong(job.String("Description")) + "<br/><br/>" + job.String("Intro") + "<br/><br/>" +
-                            Tag.Strong(App.Resources.String("TasksHeading")) + job.String("Tasks") + Tag.Strong(App.Resources.String("QualificationsHeading")) +
-                            job.String("Qualifications") + Tag.Strong(App.Resources.String("OurOfferHeading")) + job.String("OurOffer");
-
-        var jsonLd = new Dictionary<string, object> {
-            { "@context", "https://schema.org"},
-            { "@type", "JobPosting" },
-            { "title", job.String("Name") },
-            { "description", jsonDescription},
-            { "datePosted", job.DateTime("Date").ToString("s") },
-            { "hiringOrganization", new Dictionary<string, object> {
-                { "@type", "Organization" },
-                { "name", App.Settings.String("Organization") },
-                { "logo", MyContext.Site.Url.Replace("/job-app", "") + "/Portals/job-app/2sxc/Jobs2/src/2sic-logo-square.png" },
-                { "sameAs", MyContext.Site.Url }
-            }},
-            { "jobLocation", new Dictionary<string, object> {
-                {"@type", "Place"},
-                { "address", new Dictionary<string, object> {
-                    { "@type", "PostalAddress" },
-                    { "streetAddress", App.Settings.String("OrganizationStreet") },
-                    { "addressLocality", App.Settings.String("OrganizationCity") },
-                    { "addressRegion", App.Settings.String("OrganizationRegion") },
-                    { "postalCode", App.Settings.Int("OrganizationZip") },
-                    { "addressCountry", App.Settings.String("OrganizationCountry") }
-
-                }}
-            }},
-            { "employmentType", employmentTypes.Select(e => e.String("Key")) },
-            { "directApply", true },
-            { "identifier", new Dictionary<string, object> {
-                { "@type", "PropertyValue" },
-                { "name", App.Settings.String("Identifier") },
-                { "value", job.Id }
-            }}
-        };
-
-        Kit.Page.AddJsonLd(jsonLd);
-        #endregion
+    if (App.Settings.GoogleJobsApi) {
+        // Get JsonLd for a JobPosting
+        Kit.Page.AddJsonLd(GetJsonLdForDetailJob(job, employmentTypes));
     }
 }
-<div class="app-jobs2-details"  @Kit.Toolbar.Default(job)>
+<div class="app-jobs3-details"  @Kit.Toolbar.Default(job)>
     <div class="row mb-3 mb-lg-5">
         <div class="col-md-7 order-md-first">
             <h1 class="display-2">
-                <span class="mb-1 d-block">@App.Resources.String("NamePrefix")</span>
-                @job.String("Name")
+                <span class="mb-1 d-block">@App.Resources.NamePrefix</span>
+                @job.Name
             </h1>
-            <div>@App.Resources.String("DatePosted"): @job.DateTime("Date").ToString("d")</div>
+            <div>@App.Resources.DatePosted: @job.DateTime("Date").ToString("d")</div>
         </div>
         <div class="col-md-4 order-md-last offset-lg-1">
-            @if (Text.Has(job.String("Image"))) {
-                @job.Picture("Image", settings: "Content", factor: "1/2", imgClass: "rounded", imgAltFallback : job.String("Name"))
+            @if (job.IsNotEmpty("Image")) {
+                @job.Picture("Image", settings: "Content", factor: "1/2", imgClass: "rounded", imgAltFallback : job.Name)
             }
         </div>
     </div>
 
     <div class="row mb-3 mb-lg-4">
         <div class="col-12">
-            <h2>@job.String("Description")</h2>
+            <h2>@job.Description</h2>
             <p>&nbsp;</p>
-            <p style="white-space: pre-line">@job.String("Intro")</p>
+            <p style="white-space: pre-line">@job.Intro</p>
         </div>
     </div>
 
     <div class="row mb-3 mb-lg-4">
         <div class="col-12">
-            <h2>@App.Resources.String("TasksHeading")</h2>
-            @job.Html("Tasks", container:"")
+            <h2>@App.Resources.TasksHeading</h2>
+            @job.Html("Tasks")
         </div>
     </div>
 
     <div class="row mb-3 mb-lg-4">
         <div class="col-12">
-            <h2>@App.Resources.String("QualificationsHeading")</h2>
-            @job.Html("Qualifications", container:"")
+            <h2>@App.Resources.QualificationsHeading</h2>
+            @job.Html("Qualifications")
         </div>
     </div>
 
     <div class="row mb-3 mb-lg-4">
         <div class="col-12 mb-2">
-            <h2>@App.Resources.String("OurOfferHeading")</h2>
-            @job.Html("OurOffer", container:"")
+            <h2>@App.Resources.OurOfferHeading</h2>
+            @job.Html("OurOffer")
         </div>
     </div>
 
     <div class="row mb-3 mb-lg-4">
         <div class="col-12 mb-2">
-            @job.Html("Outro", container:"")
+            @job.Html("Outro")
         </div>
     </div>
 
-    <a href="@App.Settings.Url("MainPage")" class="btn btn-outline-secondary">@App.Resources.String("BtnBack")</a>
-    @if (App.Settings.Bool("EnableRegistration")) {
-        <a href="@App.Settings.Url("RegistrationPage")/jobId/@job.Id" class="btn btn-primary">@App.Resources.String("BtnRegistration")</a>
+    <a href="@App.Settings.MainPage" class="btn btn-outline-secondary">@App.Resources.BtnBack</a>
+    @if (App.Settings.EnableRegistration) {
+        <a href="@App.Settings.RegistrationPage/jobId/@job.Id" class="btn btn-primary">@App.Resources.BtnRegistration</a>
     }
 </div>
 
 
-@Html.Partial("shared/Assets.cshtml", new { domAttribute })
+@Html.Partial("Assets.cshtml", new { domAttribute })
