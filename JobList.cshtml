@@ -3,6 +3,7 @@
 @using ToSic.Sxc.Data
 @using AppCode.Data
 @using AppCode
+@using System
 
 @{
 
@@ -57,7 +58,10 @@
     @foreach (var job in jobs) 
     {
       var jobCategories = ((IEnumerable<Category>)job.Categories).Select(x => x.Key);
-      var detailLink = App.Settings.DetailsPage + "/id/" + job.Id;
+        
+      var detailsPageId = Text.Has(App.Settings.String("DetailsPage")) 
+    ? int.Parse((App.Settings.String("DetailsPage")).Split(':')[1])
+    : 0; 
       
       <div @Kit.Toolbar.Default(job) class='app-jobs3-job @(isBs3 ? "col col-xs-12" : "col-12")' app-jobs3-filterelem="@Kit.Json.ToJson(jobCategories)">
           <div class="row position-relative">                          
@@ -78,7 +82,7 @@
                 <span>@category.Name</span>
               }
             </div>
-            <a class="stretched-link" title="@job.Name" href="@detailLink"></a>
+            <a class="stretched-link" title="@job.Name" href='@Link.To(pageId: detailsPageId, parameters: "id=" + job.Id)'></a>
           </div>
         
       </div>
