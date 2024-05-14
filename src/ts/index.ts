@@ -34,62 +34,65 @@ function init({ domAttribute, currentCategory, validationOptions }: { domAttribu
   if(!eventsWrapper) return
 
   const submitButton = eventsWrapper.querySelector('[app-jobs3-send]') as HTMLButtonElement;
-  submitButton.addEventListener('click', async (event: Event) => {
-    event.preventDefault();
-
-    const eventBtn = event.currentTarget as HTMLElement;
-    
-    var valid = validateForm(eventsWrapper, validationOptions)
-    if (!valid) {
-      showAlert(eventsWrapper, 'msgIncomplete')
-      return
-    }
-    
-    const formValues = await getFormValues(eventsWrapper)
-
-    // if (requiresRecaptcha(eventsWrapper)) {
-    //   let token = await getRecaptchaToken(eventsWrapper)
-    //   if (!token) return showAlert(eventsWrapper, 'msgRecap')
+  if(submitButton !== null) {
+    submitButton.addEventListener('click', async (event: Event) => {
+      event.preventDefault();
   
-    //   // set token for backend
-    //   formValues.Recaptcha = token
-    // }
-
-
-    // imply that message is sending by ui modifications 
-
-    disableInputs(eventsWrapper, true)
-    showAlert(eventsWrapper, 'msgSending')
+      const eventBtn = event.currentTarget as HTMLElement;
+      
+      var valid = validateForm(eventsWrapper, validationOptions)
+      if (!valid) {
+        showAlert(eventsWrapper, 'msgIncomplete')
+        return
+      }
+      
+      const formValues = await getFormValues(eventsWrapper)
+  
+      // if (requiresRecaptcha(eventsWrapper)) {
+      //   let token = await getRecaptchaToken(eventsWrapper)
+      //   if (!token) return showAlert(eventsWrapper, 'msgRecap')
     
-    //#region request handling
-
-    let endpoint = (eventsWrapper as HTMLElement).dataset.webservice // (should be "Form/ProcessForm" or a custom override)
-
-
-    sendForm(formValues, submitButton, endpoint)
-      .then((result: any) => {
-        // error
-        if(!result.ok) {
-          if(debug) console.log('error', result.status);
+      //   // set token for backend
+      //   formValues.Recaptcha = token
+      // }
+  
+  
+      // imply that message is sending by ui modifications 
+  
+      disableInputs(eventsWrapper, true)
+      showAlert(eventsWrapper, 'msgSending')
+      
+      //#region request handling
+  
+      let endpoint = (eventsWrapper as HTMLElement).dataset.webservice // (should be "Form/ProcessForm" or a custom override)
+  
+  
+      sendForm(formValues, submitButton, endpoint)
+        .then((result: any) => {
+          // error
+          if(!result.ok) {
+            if(debug) console.log('error', result.status);
+      
+            showAlert(eventsWrapper, 'msgError')
+            showConfigWarnings(eventsWrapper, 'app-jobs3-config-warning')
+            enableInputs(eventsWrapper)
+            return
+          }
+          
+          // success
+          if(debug) console.log('success', result.json())
+          submitButton.setAttribute("disabled", "")
     
-          showAlert(eventsWrapper, 'msgError')
+          showAlert(eventsWrapper, 'msgOk')
           showConfigWarnings(eventsWrapper, 'app-jobs3-config-warning')
-          enableInputs(eventsWrapper)
-          return
-        }
-        
-        // success
-        if(debug) console.log('success', result.json())
-        submitButton.setAttribute("disabled", "")
+          disableInputs(eventsWrapper, false)
+    
+        })
   
-        showAlert(eventsWrapper, 'msgOk')
-        showConfigWarnings(eventsWrapper, 'app-jobs3-config-warning')
-        disableInputs(eventsWrapper, false)
+      //#endregion
+    })   
+  }
   
-      })
-
-    //#endregion
-  })   
 }
 
 // match category button to filter and add/remove primary class
