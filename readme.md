@@ -69,3 +69,5 @@ The Source Code is all here - so you can easily customize to your hearts desire!
   * strong typed
   * Auto Generated Class
   * Typed MyItem
+* v03.17.01 2024-07
+  * Update app.sln and app.csproj
