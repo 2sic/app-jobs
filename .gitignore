@@ -2,6 +2,5 @@
 npm-debug.log
 .temp_cache
 .vs/
-obj/
 /obj
-bin/
+/bin
