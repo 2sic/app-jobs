@@ -1,7 +1,8 @@
 import { PristineOptions } from "./lib-2sxc-pristine-options";
+import Pristine from "pristinejs";
 
-let Pristine = require("../../node_modules/pristinejs");
 declare let $2sxc: any;
+
 
 /*
   This is a shared code used in various 2sxc apps. Make sure that they are in sync, so if you improve it, improve all 2sxc apps which use this. 
