@@ -4,20 +4,24 @@
   "description": "The standard App for 2sic to use for Job Lists.",
   "main": "(none)",
   "scripts": {
+    "build-prod-bs3": "concurrently -n vite,tsc -c cyan,yellow \"npm run build-bs3\" \"npm run build:tsc\"",
+    "build-prod-bs4": "concurrently -n vite,tsc -c cyan,yellow \"npm run build-bs4\" \"npm run build:tsc\"",
+    "build-prod-bs5": "concurrently -n vite,tsc -c cyan,yellow \"npm run build-bs5\" \"npm run build:tsc\"",
     "build-bs3": "cross-env STYLE=bs3 vite build --watch",
     "build-bs4": "cross-env STYLE=bs4 vite build --watch",
-    "build-bs5": "cross-env STYLE=bs5 vite build --watch"
+    "build-bs5": "cross-env STYLE=bs5 vite build --watch",
+    "build:tsc": "tsc --noEmit --watch --preserveWatchOutput"
   },
   "author": "2sic internet solutions",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.12.6",
-    "autoprefixer": "^10.4.19",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.2.1",
     "cross-env": "^7.0.3",
     "postcss": "^8.4.38",
-    "sass": "^1.74.1",
-    "typescript": "^5.4.4",
-    "vite": "^5.2.8"
+    "sass": "^1.80.6",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
