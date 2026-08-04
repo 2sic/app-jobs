@@ -27,6 +27,9 @@
         // Get JsonLd for a JobPosting
         Kit.Page.AddJsonLd(GetJsonLdForDetailJob(job, employmentTypes));
     }
+
+    Kit.Page.AddOpenGraph("title", job.Name);
+    Kit.Page.AddOpenGraph("description", Text.Crop(job.Intro, 155));
 }
 <div class="app-jobs3-details"  @Kit.Toolbar.Default(job)>
     <div class="row mb-3 mb-lg-5">

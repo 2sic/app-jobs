@@ -12,17 +12,23 @@ const debug = false
 
 function init({ domAttribute, currentCategory, validationOptions }: { domAttribute: string, currentCategory: string, validationOptions: PristineOptions }) {
   const appWrapper = document.querySelector(`[${domAttribute}]`)
+
+  if(appWrapper === null) {
+    if(debug) console.log(`appWrapper not found for ${domAttribute}`)
+    return
+  }
+  
   const categoryButtons = appWrapper.querySelectorAll(`[app-jobs3-category-button]`)
   const noReloadRequired = currentCategory == ""
   setPrimary(currentCategory, categoryButtons)
 
-  categoryButtons.forEach((categoryButton: HTMLElement) =>
+  categoryButtons.forEach((categoryButton) =>
     categoryButton.addEventListener('click', ((e) => {
-      const filter = categoryButton.getAttribute('app-jobs3-filter');
+      const filter = categoryButton.getAttribute('app-jobs3-filter') ?? '';
 
       if (noReloadRequired) {
         e.preventDefault()
-        window.history.pushState(null, document.title, categoryButton.getAttribute('href'));
+        window.history.pushState(null, document.title, categoryButton.getAttribute('href') ?? window.location.href);
       }
 
       setPrimary(filter, categoryButtons)
@@ -30,7 +36,7 @@ function init({ domAttribute, currentCategory, validationOptions }: { domAttribu
     }))
   )
 
-  const eventsWrapper = document.querySelector(`[${domAttribute}]`);
+  const eventsWrapper = appWrapper;
   if(!eventsWrapper) return
 
   const submitButton = eventsWrapper.querySelector('[app-jobs3-send]') as HTMLButtonElement;
@@ -38,8 +44,6 @@ function init({ domAttribute, currentCategory, validationOptions }: { domAttribu
     submitButton.addEventListener('click', async (event: Event) => {
       event.preventDefault();
   
-      const eventBtn = event.currentTarget as HTMLElement;
-      
       var valid = validateForm(eventsWrapper, validationOptions)
       if (!valid) {
         showAlert(eventsWrapper, 'msgIncomplete')
@@ -64,7 +68,7 @@ function init({ domAttribute, currentCategory, validationOptions }: { domAttribu
       
       //#region request handling
   
-      let endpoint = (eventsWrapper as HTMLElement).dataset.webservice // (should be "Form/ProcessForm" or a custom override)
+      let endpoint = (eventsWrapper as HTMLElement).dataset.webservice ?? 'Form/ProcessForm' // (should be "Form/ProcessForm" or a custom override)
   
   
       sendForm(formValues, submitButton, endpoint)
@@ -111,11 +115,14 @@ function setPrimary(filter: string, buttons: NodeListOf<Element>) {
 
 // filter shown items by selected Filter
 function filterItems(selectedFilter: string, appWrapper: Element) {
-  appWrapper.querySelectorAll(`[app-jobs3-filterelem]`).forEach((jobElement: HTMLElement) => {
-    if (selectedFilter === "nofilter" || [...JSON.parse(jobElement.getAttribute('app-jobs3-filterelem'))].find(filter => filter == selectedFilter)) {
-      jobElement.style.display = "block"
+  appWrapper.querySelectorAll(`[app-jobs3-filterelem]`).forEach((jobElement) => {
+    const element = jobElement as HTMLElement
+    const rawFilters = jobElement.getAttribute('app-jobs3-filterelem') ?? '[]'
+    const filters = JSON.parse(rawFilters) as string[]
+    if (selectedFilter === "nofilter" || filters.find(filter => filter == selectedFilter)) {
+      element.style.display = "block"
       return
     }
-    jobElement.style.display = "none"
+    element.style.display = "none"
   })
 }
