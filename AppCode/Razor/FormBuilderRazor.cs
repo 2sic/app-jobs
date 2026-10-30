@@ -23,7 +23,7 @@ namespace AppCode.Razor
     {
       return FormValidationClass()
         + (LabelInPlaceholder ? "" : "row ")
-        + (Kit.Css.Is("bs3") ? "form-group" : "mb-3");
+        + "mb-3";
     }
 
     // Choose CSS classes based on the framework
@@ -37,7 +37,7 @@ namespace AppCode.Razor
     {
       return "control-label "
         + (required ? "app-jobs3-field-required " : "")
-        + (Kit.Css.Is("bs3") ? "col col-xs-12 col-sm-3" : "col-12 col-sm-3");
+        + "col-12 col-sm-3";
     }
 
     #endregion
@@ -132,20 +132,11 @@ namespace AppCode.Razor
       foreach (var value in values)
       {
         var radioId = idString + value.ToLower().Replace(" ", "");
-        var wrapper = Tag.Div().Class(Kit.Css.Is("bs3") ? "radio" : "form-check");
-        var radio = Tag.Input().Attr("type", "radio").Id(radioId).Name(idString).Value(value);
+        var wrapper = Tag.Div().Class("form-check");
+        var radio = Tag.Input().Attr("type", "radio").Id(radioId).Name(idString).Value(value).Class("form-check-input");
         SetRequired(radio, required);
-        if (Kit.Css.Is("bs3"))
-        {
-          var radioLabel = Tag.Label(radio + value).For(radioId);
-          wrapper.Add(radioLabel);
-        }
-        else
-        {
-          radio.Class("form-check-input");
-          var radioLabel = Tag.Label(value).Class("form-check-label").For(radioId);
-          wrapper.Add(radio + radioLabel);
-        }
+        var radioLabel = Tag.Label(value).Class("form-check-label").For(radioId);
+        wrapper.Add(radio + radioLabel);
         item.Add(wrapper);
       }
       return Field(idString, required, item);
@@ -165,23 +156,10 @@ namespace AppCode.Razor
       var labelTranslated = App.Resources.String("Label" + idString, scrubHtml: "p");
       var label = ToSic.Razor.Blade.Text.First(labelTranslated, idString) + (required ? "*" : "");
 
-      // Slightly different HTML for Bootstrap3
-      if (Kit.Css.Is("bs3"))
-      {
-        return Tag.Div().Class(FormValidationClass() + "form-group").Wrap(
-            Tag.Div().Class("checkbox").Wrap(
-                Tag.Label().Wrap(checkbox, label)
-            )
-        );
-      }
-      else
-      {
-        // Bootstrap4 and 5
-        return Tag.Div().Class(FormValidationClass() + "mb-3 form-check").Wrap(
-            checkbox,
-            Tag.Label(label).Class("form-check-label").For(idString)
-        );
-      }
+      return Tag.Div().Class(FormValidationClass() + "mb-3 form-check").Wrap(
+          checkbox,
+          Tag.Label(label).Class("form-check-label").For(idString)
+      );
     }
 
     /// <summary>
@@ -189,7 +167,7 @@ namespace AppCode.Razor
     /// </summary>
     public IHtmlTag File(string name, bool required, string acceptType, string idString = "")
     {
-      var input = Tag.Input().Type("file").Id(idString).Name(name).Class("form-control-file");
+      var input = Tag.Input().Type("file").Id(idString).Name(name).Class("form-control");
 
       if (ToSic.Razor.Blade.Text.Has(acceptType))
       {
@@ -204,7 +182,7 @@ namespace AppCode.Razor
     /// </summary>
     private IHtmlTag Field(string idString, bool required, IHtmlTag items)
     {
-      var inputWrapperClasses = Kit.Css.Is("bs3") ? "col col-xs-12 col-sm-9" : "col-12 col-sm-9";
+      var inputWrapperClasses = "col-12 col-sm-9";
       var labelTranslated = App.Resources.String("Label" + idString, required: false);
       var field = Tag.Div().Class(FormClasses());
 

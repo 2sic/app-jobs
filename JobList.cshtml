@@ -19,8 +19,6 @@
 
   // Get the unique domAttribute key
   var domAttribute = Constants.DomAttribute + UniqueKey; 
-
-  var isBs3 = Kit.Css.Is("bs3");
 }
 
 @* Show Warning if admin *@
@@ -63,9 +61,9 @@
     ? int.Parse((App.Settings.String("DetailsPage")).Split(':')[1])
     : 0; 
       
-      <div @Kit.Toolbar.Default(job) class='app-jobs3-job p-2 @(isBs3 ? "col col-xs-12" : "col-12")' app-jobs3-filterelem="@Kit.Json.ToJson(jobCategories)">
+      <div @Kit.Toolbar.Default(job) class="app-jobs3-job p-2 col-12" app-jobs3-filterelem="@Kit.Json.ToJson(jobCategories)">
           <div class="row position-relative">                          
-            <div class='@(isBs3 ? "col-xs-9" : "col-9")'>
+            <div class="col-9">
               <h3>@job.Name</h3>
               <div class="app-jobs3-categories-list ">
                 <span>@job.Date.ToString("dd.MM.yyyy")</span>
@@ -77,7 +75,7 @@
 
               <span class="app-jobs3-link text-primary"> @App.Resources.LabelShowMore &rsaquo;</span>
             </div>
-            <div class='app-jobs3-categories-container @(isBs3 ? "col-xs-3" : "col-3")'>
+            <div class="app-jobs3-categories-container col-3">
               @foreach (var category in job.Categories) {
                 <span class="text-primary">@category.Name</span>
               }

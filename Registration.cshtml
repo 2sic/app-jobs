@@ -13,7 +13,7 @@
 @if (!App.Settings.EnableRegistration) 
 {
 	<div class="alert alert-danger" role="alert">
-    <span class="sr-only">Error:</span>
+    <span class="visually-hidden">Error:</span>
     @Html.Raw(Kit.Scrub.Only(App.Resources.MessageRegistrationDisabled, "p"))
   </div>
   <a href="@App.Settings.MainPage" class="btn btn-outline-primary">@Html.Raw(App.Resources.BtnBack)</a>
@@ -26,7 +26,7 @@
 @if (job == null) 
 {
   <div class="alert alert-danger" role="alert">
-    <span class="sr-only">Error:</span>
+    <span class="visually-hidden">Error:</span>
     @App.Resources.LabelNoResults
   </div>
   <a href="@App.Settings.MainPage" class="btn btn-outline-primary">@Html.Raw(App.Resources.BtnBack)</a>
@@ -71,7 +71,7 @@
 	@* Submit Button *@
 	<div class="mb-3 row">
 		<div class="col-md-9 offset-sm-3">
-			<a href="@App.Settings.DetailsPage/id/@job.Id" class='btn @(Kit.Css.Is("bs3") ? "btn-default" : "btn-outline-primary")'>@Html.Raw(App.Resources.BtnBack)</a>
+			<a href="@App.Settings.DetailsPage/id/@job.Id" class="btn btn-outline-primary">@Html.Raw(App.Resources.BtnBack)</a>
 			<button type="button" app-jobs3-send class="btn btn-primary">@Html.Raw(App.Resources.BtnRegistration)</button>
 		</div>
 	</div>  

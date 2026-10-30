@@ -16,8 +16,8 @@
 | App Catalog         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/jobs-app-v2-hybrid-for-dnn-and-oqtane)
 | Screenshots         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/jobs-app-v2-hybrid-for-dnn-and-oqtane)
 | Best Practices      | ✅    | Uses v13.10 conventions
-| Bootstrap 3         | ✅    | optimized
-| Bootstrap 4         | ✅    | optimized
+| Bootstrap 3         | ❌    | Last supported in v03.21.01
+| Bootstrap 4         | ❌    | Last supported in v03.21.01
 | Bootstrap 5         | ✅    | optimized
 
 ## Quick Intro To The Jobs App for DNN
@@ -41,6 +41,10 @@ The Source Code is all here - so you can easily customize to your hearts desire!
 ---
 
 ## History
+
+* v03.21.02 2026-10
+  * Removed Bootstrap 3 and Bootstrap 4 support; the app is now Bootstrap 5 only
+  * For Bootstrap 3 or Bootstrap 4, use v03.21.01
 
 * 2021-11
   * Updated to v12 best-practices
@@ -75,4 +79,4 @@ The Source Code is all here - so you can easily customize to your hearts desire!
   * Added intellisense Extensions for Visual Studio Code
 * v03.21.01 2026-06
   * Switched from webpack to Vite for faster builds
-  
+
